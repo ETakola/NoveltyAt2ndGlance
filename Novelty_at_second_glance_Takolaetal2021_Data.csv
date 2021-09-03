@@ -1,0 +1,266 @@
+EffectSizeID,StudyID,Authors,Year,Class,Species,Sample,Time,Novelty,DomLabYN,LabLabYN,WildLabYN,Effect_Size,Max_lifespan,Time_scaled,Measured_attributes,Terminology,Terminology2,Species_maxlifespan_days,Context,FoodYN,NestYN,R_type,LongTermYN,NoGaussianYN,PCAYN,AverageYN,SingBehCorYN,MultipleAssaysYN,MultiTraitsYN,Remarks,Notes
+1,1,Amy et al.,2017,Aves,Serinus canaria,48,7,1,1,0,0,0.62,24,0.000799087,Latency to feed,Neophilia-Neophobia,Neophobia,8760,Food,1,0,Repeatability,0,0,0,0,1,1,0,.,.
+2,1,Amy et al.,2017,Aves,Serinus canaria,48,7,1,1,0,0,0.32,24,0.000799087,Latency to feed,Neophilia-Neophobia,Neophobia,8760,Food,1,0,Repeatability,0,0,0,0,1,1,0,.,.
+3,1,Amy et al.,2017,Aves,Serinus canaria,48,7,1,1,0,0,0.64,24,0.000799087,Latency to feed,Neophilia-Neophobia,Neophobia,8760,Food,1,0,Repeatability,0,0,0,0,1,1,0,.,.
+4,1,Amy et al.,2017,Aves,Serinus canaria,48,7,1,1,0,0,0.45,24,0.000799087,Latency to feed,Neophilia-Neophobia,Neophobia,8760,Food,1,0,Repeatability,0,0,0,0,1,1,0,.,.
+5,2,An et al.,2011,Aves,Poecile atricapillus,21,1,1,0,0,1,0.44,12.4,0.000220946,Latency to approach,Neophilia-Neophobia,Neophobia,4526,Food,1,0,Repeatability,0,0,1,0,0,1,0,.,.
+6,2,An et al.,2011,Aves,Poecile atricapillus,21,1,1,0,0,1,0.61,12.4,0.000220946,Latency to approach,Neophilia-Neophobia,Neophobia,4526,Food,1,0,Repeatability,0,0,1,0,0,1,0,.,.
+7,2,An et al.,2011,Aves,Poecile atricapillus,21,1,1,0,0,1,0.9,12.4,0.000220946,Latency to approach,Neophilia-Neophobia,Neophobia,4526,Food,1,0,Repeatability,0,0,1,0,0,1,0,.,.
+8,2,An et al.,2011,Aves,Poecile atricapillus,21,1,1,0,0,1,0.626,12.4,0.000220946,Latency to approach,Neophilia-Neophobia,Neophobia,4526,Food,1,0,Correlation,0,0,1,0,0,1,0,.,.
+9,2,An et al.,2011,Aves,Poecile atricapillus,21,1,1,0,0,1,0.37,12.4,0.000220946,Latency to approach,Neophilia-Neophobia,Neophobia,4526,Food,1,0,Correlation,0,0,1,0,0,1,0,.,.
+10,2,An et al.,2011,Aves,Poecile atricapillus,21,1,1,0,0,1,0.64,12.4,0.000220946,Latency to approach,Neophilia-Neophobia,Neophobia,4526,Food,1,0,Repeatability,0,0,1,0,0,1,0,.,.
+11,3,Arnold et al.,2016,Aves,Cyanistes caeruleus,69,1,1,0,0,1,0.29,14.6,0.000187652,Latency to approach,Neophilia-Neophobia,Neophobia,5329,Food,1,0,Repeatability,0,0,0,0,1,1,0,.,.
+12,4,Basic et al.,2012,Actinopterygii,Oncorhynchus mykiss,18,9,0,0,1,0,0.09,11,0.00224,Latency to approach,General terms,Behavioural response,4015,Neutral,0,0,Correlation,0,0,0,0,1,1,1,.,.
+13,4,Basic et al.,2012,Actinopterygii,Oncorhynchus mykiss,18,9,0,0,1,0,0.34,11,0.00224,Locomotor activity,General terms,Behavioural response,4015,Neutral,0,0,Correlation,0,0,0,0,1,1,1,.,.
+14,4,Basic et al.,2012,Actinopterygii,Oncorhynchus mykiss,18,9,0,0,1,0,0.09,11,0.00224,Number of approaches,General terms,Behavioural response,4015,Neutral,0,0,Correlation,0,0,0,0,1,1,1,.,.
+15,5,Baxter-Gilbert et al.,2019,Reptilia,Intellagama lesueurii,126,300,1,0,1,0,0.05,18.9,0.043487715,Latency to approach,Neophilia-Neophobia,Neophilia,6898.5,Neutral,0,0,Correlation,1,0,0,0,1,1,0,.,.
+16,5,Baxter-Gilbert et al.,2019,Reptilia,Intellagama lesueurii,228,300,1,0,1,0,0.06,18.9,0.043487715,Latency to approach,Neophilia-Neophobia,Neophilia,6898.5,Neutral,0,0,Repeatability,1,0,0,0,1,1,0,.,.
+17,5,Baxter-Gilbert et al.,2019,Reptilia,Intellagama lesueurii,83,300,1,0,1,0,0,18.9,0.043487715,Latency to approach,Neophilia-Neophobia,Neophilia,6898.5,Neutral,0,0,Repeatability,1,0,0,0,1,1,0,.,.
+18,6,Bibi et al.,2019,Aves,Parus major,24,14,1,0,0,1,0.469,15.4,0.00249066,Latency to feed,Neophilia-Neophobia,Neophobia,5621,Food,1,0,Correlation,0,0,0,0,1,1,0,.,.
+19,7,Boogert et al.,2006,Aves,Sturnus vulgaris,15,1,1,0,0,1,0.88,22.9,0.00012,Latency to feed,Neophilia-Neophobia,Object-neophobia,8358.5,Food,1,0,Correlation,0,0,0,0,1,1,0,.,.
+20,7,Boogert et al.,2006,Aves,Sturnus vulgaris,15,1,1,0,0,1,0.72,22.9,0.00012,Latency to feed,Neophilia-Neophobia,Object-neophobia,8358.5,Food,1,0,Correlation,0,0,0,0,1,1,0,.,.
+21,7,Boogert et al.,2006,Aves,Sturnus vulgaris,15,1,1,0,0,1,0.85,22.9,0.00012,Latency to feed,Neophilia-Neophobia,Object-neophobia,8358.5,Food,1,0,Correlation,0,0,0,0,1,1,0,.,.
+22,8,Brust & Guenther,2017,Mammalia,Cavia aperea,22,32,1,0,1,0,0.71,6,0.014611872,Latency to contact,Boldness-Shyness,Boldness,2190,Neutral,0,0,Repeatability,1,0,0,0,1,1,0,.,.
+23,9,Burns,2008,Actinopterygii,Poecilia reticulata,36,4,1,0,0,1,0.13,5,0.00219,Latency to approach,Neophilia-Neophobia,Neophobia,1825,Neutral,0,0,Correlation,0,0,0,0,1,1,0,Terminology states neophobia with components of shyness-boldness and exploration),.
+24,9,Burns,2008,Actinopterygii,Poecilia reticulata,11,4,1,0,0,1,0.42,5,0.00219,Latency to approach,Neophilia-Neophobia,Neophobia,1825,Neutral,0,0,Repeatability,0,0,0,0,1,1,0,Terminology states neophobia with components of shyness-boldness and exploration),.
+25,10,Carere et al.,2005,Aves,Parus major,19,1095,0,0,1,0,0.31,15.4,0.19481,Latency to approach,Exploration,Exploration,5621,Neutral,0,0,Correlation,1,0,0,1,0,1,1,.,.
+26,11,Collins et al.,2019,Aves,Rissa tridactyla,42,14,0,0,0,0,0.37,28.5,0.00134583,Latency to approach,Boldness-Shyness,Boldness,10402.5,Nest,0,1,Repeatability,0,0,1,0,0,0,1,.,.
+27,12,Coutant et al.,2018,Aves,Amazona aestiva,31,42,0,0,0,1,0.48,49,0.002348337,Behaviour scores,Neophilia-Neophobia,Neophilia,17885,Neutral,0,0,Repeatability,1,0,1,0,0,1,1,Terminology incudes curiosity/neophilia and anxiety/vigilance,.
+28,12,Coutant et al.,2018,Aves,Amazona aestiva,18,540,0,0,0,1,0.75,49,0.030192899,Behaviour scores,Neophilia-Neophobia,Neophilia,17885,Neutral,0,0,Correlation,1,0,1,0,0,1,1,Terminology incudes curiosity/neophilia and anxiety/vigilance,.
+29,13,Damas-Moreira et al.,2019,Reptilia,Podarcis siculus,26,7,1,0,0,1,0.073,10,0.001917808,Latency to approach,Neophilia-Neophobia,Neophobia,3650,Neutral,0,0,Repeatability,0,0,0,0,1,1,0,.,.
+30,13,Damas-Moreira et al.,2019,Reptilia,Podarcis virescens,29,7,1,0,0,1,0.293,10,0.001917808,Latency to approach,Neophilia-Neophobia,Neophobia,3650,Neutral,0,0,Correlation,0,0,0,0,1,1,0,.,.
+31,14,Dammhahn & Almeling,2012,Mammalia,Microcebus murinus,29,330,0,0,0,0,0.73,18.2,0.04968,Behaviour scores,Boldness-Shyness,Boldness,6643,Neutral,0,0,Repeatability,1,0,1,0,0,1,0,.,.
+32,14,Dammhahn & Almeling,2012,Mammalia,Microcebus murinus,29,330,0,0,0,0,0.61,18.2,0.04968,Behaviour scores,Boldness-Shyness,Boldness,6643,Neutral,0,0,Repeatability,1,0,1,0,0,1,0,.,.
+33,14,Dammhahn & Almeling,2012,Mammalia,Microcebus murinus,30,330,0,0,0,0,0.18,18.2,0.04968,Behaviour scores,Boldness-Shyness,Boldness,6643,Neutral,0,0,Repeatability,1,0,1,0,0,1,0,.,.
+34,14,Dammhahn & Almeling,2012,Mammalia,Microcebus murinus,30,330,0,0,0,0,0.39,18.2,0.04968,Behaviour scores,Boldness-Shyness,Boldness,6643,Food,1,0,Repeatability,1,0,1,0,0,1,0,.,.
+35,15,Dardenne et al.,2013,Aves,Hirundo rustica,77,365,1,0,0,0,0.31,16,0.0625,Latency to approach,Neophilia-Neophobia,Neophobia,5840,Nest,0,1,Repeatability,1,0,0,0,1,1,0,.,.
+36,15,Dardenne et al.,2013,Aves,Hirundo rustica,77,365,1,0,0,0,0.38,16,0.0625,Latency to approach,Neophilia-Neophobia,Neophobia,5840,Nest,0,1,Repeatability,1,0,0,0,1,1,0,.,.
+37,16,David et al.,2011,Aves,Taeniopygia guttata,42,7,1,0,1,0,0.43,12,0.001598174,Latency to feed,Neophilia-Neophobia,Neophobia,4380,Food,1,0,Repeatability,0,0,1,0,0,1,1,.,.
+38,17,DeRango et al.,2019,Mammalia,Zalophus wollebaeki,33,10.5,1,0,0,0,0.699,35.7,0.000805802,Behaviour scores,Boldness-Shyness,Boldness,13030.5,Neutral,0,0,Repeatability,0,0,0,0,1,1,0,.,.
+39,17,DeRango et al.,2019,Mammalia,Zalophus wollebaeki,14,10.5,1,0,0,0,0.601,35.7,0.000805802,Behaviour scores,Boldness-Shyness,Boldness,13030.5,Neutral,0,0,Repeatability,0,0,0,0,1,1,0,.,.
+40,17,DeRango et al.,2019,Mammalia,Zalophus wollebaeki,20,365,1,0,0,0,0.793,35.7,0.028011204,Behaviour scores,Boldness-Shyness,Boldness,13030.5,Neutral,0,0,Correlation,1,0,0,0,1,1,0,.,.
+41,18,Devost et al. ,2016,Aves,Poecile atricapillus,78,365,0,0,0,0,0.36,12.4,0.080645161,Latency to approach,Neophilia-Neophobia,Neophilia,4526,Neutral,0,0,Repeatability,1,0,0,0,1,1,0,.,.
+42,19,Edwards et al.,2017,Aves,Acrocephalus sechellensis,177,240,1,0,0,1,0.37,17,0.038678485,Behaviour scores,Exploration,Exploration,6205,Neutral,0,0,Correlation,1,0,0,1,0,1,1,.,.
+43,20,Edwards et al.,2018,Aves,Acrocephalus sechellensis,185,1460,0,0,0,1,0.08,17,0.235294118,Number of approaches,Exploration,Exploration,6205,Neutral,0,0,Repeatability,1,1,0,1,0,1,1,.,.
+44,21,Ensminger & Westneat,2012,Aves,Passer domesticus,27,1,1,0,1,0,0.31,23,0.000119119,Latency to feed,Neophilia-Neophobia,Neophobia,8395,Food,1,0,Correlation,0,0,0,0,1,1,0,Terminology states that neophobia is a component of risk-taking,.
+45,22,Exnerova et al.,2015,Aves,Parus major,50,1,1,0,0,1,0.6,15.4,0.00018,Behaviour scores,Exploration,Exploration,5621,Food,1,0,Repeatability,0,1,0,0,1,1,0,.,.
+46,22,Exnerova et al.,2015,Aves,Parus major,50,1,1,0,0,1,0.29,15.4,0.00018,Behaviour scores,Exploration,Exploration,5621,Food,1,0,Repeatability,0,1,0,0,1,1,0,.,.
+47,23,Farrell et al.,2012,Aves,Sturnus vulgaris,40,1,1,0,0,1,0.401,22.9,0.000119639,Latency to feed,Neophilia-Neophobia,Neophobia,8358.5,Food,1,0,Correlation,0,0,0,0,1,1,0,.,.
+48,24,Feenders & Bateson,2013,Aves,Sturnus vulgaris,31,7,1,0,0,1,0.323,22.9,0.00083752,Latency to contact,Neophilia-Neophobia,Neophobia,8358,Neutral,0,0,Correlation,0,0,0,0,1,1,0,.,.
+49,25,Finkemeier et al. ,2016,Mammalia,Cavia aperea,63,55,0,0,1,0,0.65,6,0.025114155,Number of approaches,Boldness-Shyness,Boldness,2190,Neutral,0,0,Correlation,1,0,0,0,1,1,0,.,.
+50,26,Fox & Millam,2010,Aves,Nymphicus hollandicus,45,1,1,0,1,0,0.72,35,0.00008,Behaviour scores,General terms,Behavioural response,12775,Neutral,0,0,Correlation,0,0,0,1,0,1,0,.,.
+51,27,Frost et al.,2013,Actinopterygii,Oncorhynchus mykiss,12,14,1,0,1,0,0.972,11,0.003486924,Latency to approach,Boldness-Shyness,Boldness,4015,Neutral,0,0,Repeatability,0,0,0,0,1,1,0,.,.
+52,28,Funghi et al.,2015,Aves,Estrilda astrild,42,35,1,0,0,1,0.4,4,0.02397,Latency to approach,Neophilia-Neophobia,Neophobia,1460,Food,1,0,Correlation,1,0,0,0,1,1,0,.,.
+53,29,Gabriel & Black,2010,Aves,Cyanocitta stelleri,29,1,0,0,0,0,0.82,16.1,0.00017,Behaviour scores,Exploration,Exploration,5876.5,Neutral,0,0,Correlation,0,0,0,1,0,1,0,.,.
+54,30,Garamszegi et al.,2012,Aves,Ficedula albicollis,52,3,0,0,0,0,0.309,9.8,0.000838692,Latency to contact,Other terms,Approach-Avoidance,3577,Nest,0,1,Correlation,0,0,0,0,1,1,0,.,.
+55,31,Garamszegi et al.,2015,Aves,Ficedula albicollis,27,30,0,0,0,0,0.449,9.8,0.008386916,Latency to approach,Other terms,Approach-Avoidance,3577,Nest,0,1,Repeatability,0,0,0,0,1,1,0,.,.
+56,31,Garamszegi et al.,2015,Aves,Ficedula albicollis,16,30,0,0,0,0,0.047,9.8,0.008386916,Latency to approach,Other terms,Approach-Avoidance,3577,Nest,0,1,Repeatability,0,1,0,0,1,1,0,.,.
+57,31,Garamszegi et al.,2015,Aves,Ficedula albicollis,25,30,0,0,0,0,0.235,9.8,0.008386916,Latency to approach,Other terms,Approach-Avoidance,3577,Nest,0,1,Repeatability,0,1,0,0,1,1,0,.,.
+58,31,Garamszegi et al.,2015,Aves,Ficedula albicollis,16,30,0,0,0,0,0.046,9.8,0.008386916,Latency to approach,Other terms,Approach-Avoidance,3577,Nest,0,1,Repeatability,0,0,0,0,1,1,0,.,.
+59,31,Garamszegi et al.,2015,Aves,Ficedula albicollis,18,30,0,0,0,0,0.104,9.8,0.008386916,Latency to approach,Other terms,Approach-Avoidance,3577,Nest,0,1,Repeatability,0,0,0,0,1,1,0,.,.
+60,31,Garamszegi et al.,2015,Aves,Ficedula albicollis,19,2920,0,0,0,0,0.021,9.8,0.816326531,Latency to approach,Other terms,Approach-Avoidance,3577,Nest,0,1,Repeatability,1,0,0,0,1,1,0,.,.
+61,32,Grace & Anderson,2014,Aves,Sula granti,147,1,0,0,0,0,0.72,21,0.00013,Behaviour scores,General terms,Behavioural response,7665,Neutral,0,0,Correlation,0,0,0,0,1,1,0,.,.
+62,32,Grace & Anderson,2014,Aves,Sula granti,157,1,0,0,0,0,0.22,21,0.00013,Behaviour scores,General terms,Behavioural response,7665,Neutral,0,0,Correlation,0,0,0,0,1,1,0,.,.
+63,32,Grace & Anderson,2014,Aves,Sula granti,86,360,0,0,0,0,0.69,21,0.04697,Behaviour scores,General terms,Behavioural response,7665,Neutral,0,0,Correlation,1,0,0,0,1,1,0,.,.
+64,32,Grace & Anderson,2014,Aves,Sula granti,86,360,0,0,0,0,0.3,21,0.04697,Behaviour scores,General terms,Behavioural response,7665,Neutral,0,0,Correlation,1,0,0,0,1,1,0,.,.
+65,33,Greenberg & Holekamp,2017,Mammalia,Crocuta crocuta,14,1,1,0,0,0,0.2,41.1,0.00007,Latency to contact,Neophobia & Exploration,Neophobia & Exploration,15001.5,Neutral,0,0,Correlation,0,0,0,1,0,1,1,.,.
+66,34,Greggor et al.,2016,Aves,Corvus frugilegus,16,90,1,0,1,0,0.49,22.9,0.01077,Latency to contact,Neophilia-Neophobia,Neophobia,8358.5,Neutral,0,0,Correlation,1,0,0,0,1,1,0,.,.
+67,34,Greggor et al.,2016,Aves,Corvus frugilegus,17,1460,1,0,1,0,0.48,22.9,0.17467,Latency to contact,Neophilia-Neophobia,Neophobia,8358.5,Neutral,0,0,Correlation,1,0,0,0,1,1,0,.,.
+68,35,Greggor et al.,2020,Aves,Corvus hawaiiensis,102,16.26,1,0,1,0,0.705,25,0.001781918,Latency to feed,Neophilia-Neophobia,Neophobia,9125,Food,1,0,Repeatability,0,0,0,0,1,0,0,.,.
+69,36,Grindstaff et al.,2012,Aves,Taeniopygia guttata,109,0.2,1,0,1,0,0.22,12,4.57E-05,Latency to contact,Neophilia-Neophobia,Neophobia,4380,Neutral,0,0,Correlation,0,0,0,0,1,1,0,.,.
+70,37,Guenther & Brust,2017,Mammalia,Cavia aperea,24,30,1,0,1,0,0.72,6,0.01369863,Latency to contact,Boldness-Shyness,Boldness,2190,Neutral,0,0,Repeatability,0,0,0,0,1,1,0,.,.
+71,38,Guenther & Trillmich,2013,Mammalia,Cavia aperea,50,180,1,0,1,0,0,6,0.082191781,Latency to contact,Boldness-Shyness,Boldness,2190,Neutral,0,0,Repeatability,1,0,0,0,1,1,1,.,.
+72,39,Guenther et al.,2018,Mammalia,Cavia aperea,30,30,1,0,1,0,0.19,6,0.01369863,Number of approaches,Boldness-Shyness,Boldness,2190,Neutral,0,0,Repeatability,0,0,0,0,1,1,0,.,.
+73,39,Guenther et al.,2018,Mammalia,Cavia aperea,30,30,1,0,1,0,0.12,6,0.01369863,Number of approaches,Boldness-Shyness,Boldness,2190,Neutral,0,0,Repeatability,0,0,0,0,1,1,0,.,.
+74,40,Guenther et al. ,2013,Mammalia,Cavia aperea,21,30,1,0,1,0,0.6,6,0.01369863,Latency to contact,Boldness-Shyness,Boldness,2190,Neutral,0,0,Repeatability,0,0,0,0,1,1,0,.,.
+75,41,Guenther et al. ,2014,Mammalia,Cavia aperea,62,72,1,0,1,0,0.23,6,0.032876712,Latency to contact,Boldness-Shyness,Boldness,2190,Neutral,0,0,Correlation,1,0,0,0,1,1,0,.,.
+76,42,Guido et al.,2017,Aves,Milvago chimango,9,24,1,0,0,1,0.86,25.8,0.002548582,Latency to feed,Neophilia-Neophobia,Neophobia,9417,Food,1,0,Repeatability,0,0,0,0,1,1,0,.,.
+77,42,Guido et al.,2017,Aves,Milvago chimango,9,24,1,0,0,1,0.92,25.8,0.002548582,Latency to feed,Neophilia-Neophobia,Neophobia,9417,Food,1,0,Repeatability,0,0,0,0,1,1,0,.,.
+78,43,Gyuris et al. ,2012,Insecta,Pyrrhocoris apterus,40,30,1,0,1,0,0.262,2,0.04109589,Locomotor activity,Exploration,Exploration,730,Neutral,0,0,Correlation,0,1,0,0,1,1,0,.,"This is not boldness, but exploration"
+79,44,Haage et al.,2013,Mammalia,Mustela lutreola,68,30,1,0,1,0,0.69,8.4,0.009784736,Latency to approach,Boldness-Shyness,Boldness,3066,Neutral,0,0,Repeatability,0,1,0,1,0,1,1,.,.
+80,44,Haage et al.,2013,Mammalia,Mustela lutreola,80,180,1,0,1,0,0.59,8.4,0.058708415,Latency to approach,Boldness-Shyness,Boldness,3066,Neutral,0,0,Repeatability,1,0,0,1,0,1,1,.,.
+81,45,Hebert et al.,2014,Actinopterygii,Betta splendens,25,1,1,0,1,0,0.201,2,0.00137,Latency to feed offspring,Boldness-Shyness,Boldness,730,Neutral,0,0,Correlation,0,0,0,0,1,1,1,.,.
+82,45,Hebert et al.,2014,Actinopterygii,Betta splendens,25,1,1,0,1,0,0.224,2,0.00137,Latency to feed offspring,Boldness-Shyness,Boldness,730,Neutral,0,0,Repeatability,0,0,0,0,1,1,1,.,.
+83,45,Hebert et al.,2014,Actinopterygii,Betta splendens,25,1,1,0,1,0,0.616,2,0.00137,Latency to approach,Boldness-Shyness,Boldness,730,Neutral,0,0,Repeatability,0,1,0,0,1,1,1,.,.
+84,45,Hebert et al.,2014,Actinopterygii,Betta splendens,25,1,1,0,1,0,0.516,2,0.00137,Locomotor activity,Boldness-Shyness,Boldness,730,Neutral,0,0,Repeatability,0,0,0,0,1,1,1,.,.
+85,45,Hebert et al.,2014,Actinopterygii,Betta splendens,25,1,1,0,1,0,0.679,2,0.00137,Latency to approach,Boldness-Shyness,Boldness,730,Neutral,0,0,Repeatability,0,0,0,0,1,1,1,.,.
+86,45,Hebert et al.,2014,Actinopterygii,Betta splendens,25,1,1,0,1,0,0.51,2,0.00137,Locomotor activity,Boldness-Shyness,Boldness,730,Neutral,0,0,Repeatability,0,0,0,0,1,1,1,.,.
+87,46,Herborn et al. ,2010,Aves,Cyanistes caeruleus,125,1,1,0,0,1,0.28,14.6,0.000187652,Latency to feed,Neophilia-Neophobia,Neophobia,5329,Food,1,0,Correlation,0,0,0,0,1,1,0,.,.
+88,46,Herborn et al. ,2010,Aves,Cyanistes caeruleus,43,1,1,0,0,0,0.55,14.6,0.000187652,Latency to approach,Neophilia-Neophobia,Neophobia,5329,Food,1,0,Correlation,0,0,0,0,1,1,0,.,.
+89,47,Hirata & Arimoto,2018,Mammalia,Bos taurus,25,21,1,1,0,0,0.39,20,0.002876712,Latency to approach,Boldness-Shyness,Boldness,7300,Neutral,0,0,Correlation,0,0,0,0,1,0,0,.,I think here terminology is actually not quite clear (maybe I missed it)
+90,48,Hopkins & Bennett,1994,Mammalia,Pan troglodytes,49,1,1,0,1,0,0.79,59.4,0.00005,Latency to approach,Other terms,Approach-Avoidance,21681,Neutral,0,0,Correlation,0,0,0,1,0,0,0,.,.
+91,48,Hopkins & Bennett,1994,Mammalia,Pan troglodytes,49,2,1,0,1,0,0.68,59.4,0.00009,Latency to approach,Other terms,Approach-Avoidance,21681,Neutral,0,0,Correlation,0,0,0,1,0,0,0,.,.
+92,48,Hopkins & Bennett,1994,Mammalia,Pan troglodytes,49,3,1,0,1,0,0.49,59.4,0.00014,Latency to approach,Other terms,Approach-Avoidance,21681,Neutral,0,0,Correlation,0,0,0,1,0,0,0,.,.
+93,48,Hopkins & Bennett,1994,Mammalia,Pan troglodytes,49,1,1,0,1,0,0.66,59.4,0.00005,Latency to approach,Other terms,Approach-Avoidance,21681,Neutral,0,0,Correlation,0,0,0,1,0,0,0,.,.
+94,48,Hopkins & Bennett,1994,Mammalia,Pan troglodytes,49,2,1,0,1,0,0.72,59.4,0.00009,Latency to approach,Other terms,Approach-Avoidance,21681,Neutral,0,0,Correlation,0,0,0,1,0,0,0,.,.
+95,48,Hopkins & Bennett,1994,Mammalia,Pan troglodytes,49,1,1,0,1,0,0.71,59.4,0.00005,Latency to approach,Other terms,Approach-Avoidance,21681,Neutral,0,0,Correlation,0,0,0,1,0,0,0,.,.
+96,49,Jaeger et al.,2017,Mammalia,Rhabdomys pumilio,73,150,1,0,0,0,0.7,4.5,0.091324201,Latency to contact,Exploration,Exploration,1642.5,Neutral,0,0,Repeatability,1,0,0,0,1,1,0,.,.
+97,50,Janczak et al.,2003,Mammalia,Sus domesticus,88,112,0,1,0,0,0.28,27,0.01136,Latency to approach,Fearfulness,Fearfulness,9855,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+98,50,Janczak et al.,2003,Mammalia,Sus domesticus,88,112,0,1,0,0,0.53,27,0.01136,Latency to contact,Fearfulness,Fearfulness,9855,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+99,50,Janczak et al.,2003,Mammalia,Sus domesticus,88,112,0,1,0,0,0.44,27,0.01136,Number of approaches,Fearfulness,Fearfulness,9855,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+100,50,Janczak et al.,2003,Mammalia,Sus domesticus,88,112,0,1,0,0,0.3,27,0.01136,Locomotor activity,Fearfulness,Fearfulness,9855,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+101,50,Janczak et al.,2003,Mammalia,Sus domesticus,88,112,0,1,0,0,0.05,27,0.01136,Locomotor activity,Fearfulness,Fearfulness,9855,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+102,50,Janczak et al.,2003,Mammalia,Sus domesticus,88,112,0,1,0,0,0.1,27,0.01136,Locomotor activity,Fearfulness,Fearfulness,9855,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+103,51,Johnson et al. ,2015,Mammalia,Papio anubis,43,1007.4,0,0,1,0,0.215,37.5,0.0736,Latency to contact,General terms,Response to novelty,13687.5,Neutral,0,0,Repeatability,1,0,0,0,1,0,0,.,.
+104,51,Johnson et al. ,2015,Mammalia,Papio anubis,43,1007.4,0,0,1,0,0.465,37.5,0.0736,Latency to contact,General terms,Response to novelty,13687.5,Neutral,0,0,Repeatability,1,0,0,0,1,0,0,.,.
+105,52,Jolles et al.,2013,Aves,Corvus frugilegus,19,0.5,1,0,1,0,0.93,22.9,5.98E-05,Latency to approach,Boldness-Shyness,Boldness,8358.5,Food,1,0,Repeatability,0,0,0,0,1,1,0,.,.
+106,53,Jolly et al.,2019,Mammalia,Melomys burtoni,30,0.04,0,0,0,0,0.61,7.9,1.39E-05,Latency to move,Boldness-Shyness,Boldness,2883.5,Neutral,0,0,Repeatability,0,0,0,1,0,1,0,.,.
+107,54,Kerman et al.,2018,Aves,Taeniopygia guttata,30,360,1,0,1,0,0.58,12,0.082191781,Latency to feed,Boldness-Shyness,Boldness,4380,Food,1,0,Correlation,1,0,1,0,0,1,1,.,.
+108,55,Krams et al. ,2014,Aves,Ficedula hypoleuca,40,2,1,0,0,0,0.853,15,0.00037,Latency to approach,Neophobia & Exploration,Neophobia & Exploration,5475,Nest,0,1,Repeatability,0,0,0,0,1,1,0,.,.
+109,56,Krause et al.,2017,Aves,Taeniopygia guttata,147,100,0,0,1,0,0.52,12,0.02283,Latency to feed,Neophobia & Exploration,Neophobia & Exploration,4380,Food,1,0,Correlation,1,0,0,0,1,1,1,.,.
+110,56,Krause et al.,2017,Aves,Taeniopygia guttata,147,1400,0,0,1,0,0.5,12,0.31963,Latency to feed,Neophobia & Exploration,Neophobia & Exploration,4380,Food,1,0,Repeatability,1,0,0,0,1,1,1,.,.
+111,56,Krause et al.,2017,Aves,Taeniopygia guttata,147,100,0,0,1,0,0.08,12,0.02283,Latency to feed,Neophobia & Exploration,Neophobia & Exploration,4380,Food,1,0,Repeatability,1,0,0,0,1,1,1,.,.
+112,56,Krause et al.,2017,Aves,Taeniopygia guttata,147,1400,0,0,1,0,0.05,12,0.31963,Latency to feed,Neophobia & Exploration,Neophobia & Exploration,4380,Food,1,0,Repeatability,1,0,0,0,1,1,1,.,.
+113,56,Krause et al.,2017,Aves,Taeniopygia guttata,147,1400,0,0,1,0,0.38,12,0.31963,Number of approaches,Neophobia & Exploration,Neophobia & Exploration,4380,Food,1,0,Repeatability,1,0,0,0,1,1,1,.,.
+114,56,Krause et al.,2017,Aves,Taeniopygia guttata,147,1400,0,0,1,0,0.39,12,0.31963,Number of approaches,Neophobia & Exploration,Neophobia & Exploration,4380,Food,1,0,Repeatability,1,0,0,0,1,1,1,.,.
+115,56,Krause et al.,2017,Aves,Taeniopygia guttata,147,1400,0,0,1,0,0.09,12,0.31963,Number of approaches,Neophobia & Exploration,Neophobia & Exploration,4380,Food,1,0,Repeatability,1,0,0,0,1,1,1,.,.
+116,56,Krause et al.,2017,Aves,Taeniopygia guttata,147,1400,0,0,1,0,0.06,12,0.31963,Number of approaches,Neophobia & Exploration,Neophobia & Exploration,4380,Food,1,0,Repeatability,1,0,0,0,1,1,1,.,.
+117,57,Krebs et al.,2019,Mammalia,Mus domesticus,30,70,0,0,0,1,0.464,4,0.047945205,Latency to contact,General terms,Behavioural response,1460,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+118,57,Krebs et al.,2019,Mammalia,Mus domesticus,30,70,0,0,0,1,0.276,4,0.047945205,Locomotor activity,General terms,Behavioural response,1460,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+119,57,Krebs et al.,2019,Mammalia,Mus domesticus,30,70,0,0,0,1,0.258,4,0.047945205,Latency to approach,General terms,Behavioural response,1460,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+120,58,Kurvers et al.,2009,Aves,Branta leucopsis,18,7,1,0,1,0,0.64,28.2,0.00068,Latency to approach,Boldness-Shyness,Boldness,10293,Neutral,0,0,Repeatability,0,0,1,0,0,1,1,.,"I think this one is boldness, not exploration"
+121,58,Kurvers et al.,2009,Aves,Branta leucopsis,18,7,1,0,1,0,0.85,28.2,0.00068,Latency to approach,Boldness-Shyness,Boldness,10293,Neutral,0,0,Repeatability,0,0,1,0,0,1,1,.,.
+122,58,Kurvers et al.,2009,Aves,Branta leucopsis,18,300,0,0,1,0,0.72,28.2,0.02915,Latency to approach,Boldness-Shyness,Boldness,10293,Neutral,0,0,Repeatability,1,0,1,0,0,1,1,.,.
+123,59,Kurvers et al.,2012,Aves,Branta leucopsis,44,30,1,0,1,0,0.81,28.2,0.002914602,Latency to approach,Boldness-Shyness,Boldness,10293,Neutral,0,0,Repeatability,0,0,1,0,0,1,1,.,.
+124,60,Le Vin et al.,2011,Actinopterygii,Neolamprologus pulcher,28,1,1,0,1,0,0.37,7,0.000391389,Latency to approach,Other terms,Risk responsiveness,2555,Neutral,0,0,Repeatability,0,0,0,0,1,1,0,.,.
+125,61,Lermite et al.,2017,Aves,Acridotheres tristis,49,1,1,0,0,1,0.54,13,0.00021,Latency to feed,Neophilia-Neophobia,Neophobia,4745,Food,1,0,Correlation,0,0,1,0,0,1,0,.,.
+126,61,Lermite et al.,2017,Aves,Acridotheres tristis,49,1,1,0,0,1,0.434,13,0.00021,Latency to approach,Neophilia-Neophobia,Neophilia,4745,Neutral,0,0,Correlation,0,0,1,0,0,1,0,.,.
+127,62,Malmkvist & Hansen,2002,Mammalia,Neovison vison,187,4,1,0,1,0,0.89,11.4,0.00096,Latency to approach,Fearfulness,Fearfulness,4161,Neutral,0,0,Correlation,0,0,0,1,0,1,0,.,.
+128,63,Martin-Wintle et al.,2017,Mammalia,Ailuropoda melanoleuca,18,365,1,0,1,0,0.03,36.8,0.02717,Behaviour scores,Neophilia-Neophobia,Neophobia,13432,Neutral,0,0,Correlation,1,0,1,0,0,1,1,.,.
+129,64,Mazza et al.,2018,Mammalia,Myodes glareolus,86,14,1,0,1,0,0.67,4.9,0.007827789,Latency to approach,Boldness-Shyness,Boldness,1788.5,Neutral,0,0,Repeatability,0,0,1,0,0,1,1,.,.
+130,65,Mazza et al. ,2019,Mammalia,Myodes glareolus,86,15,1,0,1,0,0.67,4.9,0.008386916,Latency to approach,Boldness-Shyness,Boldness,1788.5,Neutral,0,0,Repeatability,0,0,1,0,0,1,1,.,.
+131,66,McCune et al.,2018,Aves,Aphelocoma californica,16,77,0,0,0,0,0.42,25,0.008438356,Latency to approach,Boldness-Shyness,Boldness,9125,Food,1,0,Repeatability,1,0,0,1,0,1,0,.,.
+132,66,McCune et al.,2018,Aves,Aphelocoma californica,18,270,0,0,0,0,0.43,15.8,0.046818103,Latency to approach,Boldness-Shyness,Boldness,5767,Food,1,0,Repeatability,1,0,0,1,0,1,0,.,.
+133,67,Meagher et al. ,2016,Mammalia,Bos taurus,24,21,0,1,0,0,0.54,20,0.00288,Latency to approach,Fearfulness,Fearfulness,7300,Neutral,0,0,Correlation,0,0,0,0,1,1,0,.,.
+134,67,Meagher et al. ,2016,Mammalia,Bos taurus,20,7,1,1,0,0,0.29,20,0.00096,Latency to approach,Fearfulness,Fearfulness,7300,Neutral,0,0,Correlation,0,0,0,0,1,1,0,.,.
+135,67,Meagher et al. ,2016,Mammalia,Bos taurus,11,7,0,1,0,0,0.58,20,0.00096,Latency to approach,Fearfulness,Fearfulness,7300,Neutral,0,0,Correlation,0,0,0,0,1,1,0,.,.
+136,68,Medina-Garcia et al.,2017,Aves,Melopsittacus undulatus,32,240,1,1,0,0,0.23,21,0.031311155,Latency to contact,Neophilia-Neophobia,Neophobia,7665,Neutral,0,0,Repeatability,1,0,0,0,1,1,0,.,.
+137,68,Medina-Garcia et al.,2017,Aves,Melopsittacus undulatus,32,60,1,1,0,0,0.6,21,0.007827789,Latency to contact,Neophilia-Neophobia,Neophobia,7665,Neutral,0,0,Repeatability,1,0,0,0,1,1,0,.,.
+138,69,Meehan & Mench,2002,Aves,Amazona amazonica,16,112,1,0,1,0,0.542,30,0.01023,Latency to contact,General terms,Behavioural response,10950,Neutral,0,0,Correlation,1,0,0,0,1,1,0,Terminology mentions fearfulness and exploration,.
+139,70,Mettke-Hofmann,2012,Aves,Erythrura gouldiae,24,60,0,0,1,0,0.59,6,0.0274,Latency to feed,Neophilia-Neophobia,Neophobia,2190,Food,1,0,Repeatability,1,0,0,0,1,1,1,.,.
+140,70,Mettke-Hofmann,2012,Aves,Erythrura gouldiae,24,60,0,0,1,0,0.45,6,0.0274,Latency to approach,Neophilia-Neophobia,Neophilia,2190,Neutral,0,0,Repeatability,1,0,0,0,1,1,1,.,.
+141,71,Mettke-Hofmann et al.,2005,Aves,Sylvia melanocephala,11,1,1,0,0,1,0.604,8.3,0.00033,Behaviour scores,Neophilia-Neophobia,Neophobia,3029.5,Food,1,0,Correlation,0,0,0,1,0,1,1,.,.
+142,71,Mettke-Hofmann et al.,2005,Aves,Sylvia melanocephala,11,1,1,0,0,1,0.786,8.3,0.00033,Behaviour scores,Neophilia-Neophobia,Neophobia,3029.5,Neutral,0,0,Correlation,0,0,0,1,0,1,1,.,"I think they call it neophobia, not exploration"
+143,71,Mettke-Hofmann et al.,2005,Aves,Sylvia borin,9,1,1,0,0,1,0.201,24,0.00011,Behaviour scores,Neophilia-Neophobia,Neophobia,8760,Food,1,0,Correlation,0,0,0,1,0,1,1,.,.
+144,71,Mettke-Hofmann et al.,2005,Aves,Sylvia borin,9,1,1,0,0,1,0.168,24,0.00011,Behaviour scores,Neophilia-Neophobia,Neophobia,8760,Neutral,0,0,Correlation,0,0,0,1,0,1,1,.,"I think they call it neophobia, not exploration, please double-check"
+145,72,Michelena et al. ,2009,Mammalia,Ovis aries,40,90,0,1,0,0,0.5,22.8,0.010814708,Locomotor activity,Exploration,Exploration,8322,Neutral,0,0,Repeatability,1,0,0,0,1,1,0,.,.
+146,73,Miller et al.,2006,Aves,Coturnix coturnix japonica,48,1,1,0,1,0,0.48,6,0.00046,Latency to contact,Fearfulness,Fearfulness,2190,Neutral,0,0,Correlation,0,0,0,0,1,1,1,.,.
+147,73,Miller et al.,2006,Aves,Coturnix coturnix japonica,48,18,0,0,1,0,0.39,6,0.00822,Latency to contact,Fearfulness,Fearfulness,2190,Neutral,0,0,Correlation,0,0,0,0,1,1,1,.,.
+148,74,Miller et al.,2005,Aves,Coturnix coturnix japonica,48,1,1,0,1,0,0.19,6,0.00046,Latency to approach,Fearfulness,Fearfulness,2190,Neutral,0,0,Correlation,0,0,0,0,1,1,1,.,.
+149,74,Miller et al.,2005,Aves,Coturnix coturnix japonica,48,1,1,0,1,0,0.41,6,0.00046,Latency to approach,Fearfulness,Fearfulness,2190,Neutral,0,0,Correlation,0,0,0,0,1,1,1,.,.
+150,74,Miller et al.,2005,Aves,Coturnix coturnix japonica,48,1,1,0,1,0,0.08,6,0.00046,Latency to approach,Fearfulness,Fearfulness,2190,Neutral,0,0,Correlation,0,1,0,0,1,1,1,.,.
+151,74,Miller et al.,2005,Aves,Coturnix coturnix japonica,35,1,1,0,1,0,0.48,6,0.00046,Latency to contact,Fearfulness,Fearfulness,2190,Neutral,0,0,Correlation,0,0,0,0,1,1,1,.,.
+152,75,Moldoff & Westneat,2017,Aves,Passer domesticus,36,1,1,0,1,0,0.5,23,0.000119119,Latency to approach,Neophilia-Neophobia,Neophobia,8395,Food,1,0,Correlation,0,0,0,0,1,1,0,Terminology also includes risk-taking and boldness,.
+153,76,Monestier et al.,2017,Mammalia,Capreolus capreolus,21,1,1,0,1,0,0.43,17.5,0.000156556,Number of approaches,Neophilia-Neophobia,Neophobia,6387.5,Food,1,0,Repeatability,0,0,0,1,0,0,1,.,.
+154,77,Morinay et al.,2019,Aves,Ficedula albicollis,65,365,0,0,0,0,0.39,9.8,0.102040816,Latency to approach,Neophilia-Neophobia,Neophobia,3577,Nest,0,1,Correlation,1,0,0,0,1,1,0,.,.
+155,78,Noer et al.,2016,Mammalia,Neovison vison,60,62,0,0,1,0,0.33,11.4,0.0149,Behaviour scores,Boldness-Shyness,Shyness,4161,Neutral,0,0,Repeatability,1,0,1,0,0,1,1,.,.
+156,78,Noer et al.,2016,Mammalia,Neovison vison,60,61,1,0,1,0,-0.41,11.4,0.01466,Behaviour scores,Boldness-Shyness,Shyness,4161,Neutral,0,0,Repeatability,1,0,1,0,0,1,1,.,.
+157,79,Overington et al.,2011,Aves,Quiscalus lugubris,36,1,1,0,0,1,0.62,23.1,0.00012,Latency to feed,Neophilia-Neophobia,Neophobia,8431.5,Food,1,0,Repeatability,0,0,0,0,1,1,1,.,.
+158,80,Pedersen,1994,Mammalia,Vulpes vulpes,16,240,0,0,1,0,0.46,21.3,0.03087,Behaviour scores,General terms,Behavioural response,7774.5,Neutral,0,0,Correlation,1,0,0,1,0,1,1,.,.
+159,81,Perals et al.,2017,Aves,Acridotheres tristis,58,90,1,0,0,1,0.407,13,0.018967334,Latency to contact,Neophilia-Neophobia,Neophobia,4745,Neutral,0,0,Repeatability,1,1,1,0,0,1,1,.,.
+160,82,Pogany et al. ,2018,Aves,Taeniopygia guttata,59,1,1,0,1,0,0.34,12,0.000228311,Latency to feed,Neophilia-Neophobia,Neophobia,4380,Food,1,0,Repeatability,0,0,0,0,1,0,0,.,.
+161,83,Rangassamy et al.,2016,Mammalia,Mus spicilegus,37,30,1,0,1,0,0.437,3.5,0.02348,Latency to contact,Neophilia-Neophobia,Neophobia,1277.5,Neutral,0,0,Correlation,0,0,1,0,0,1,1,.,.
+162,84,Rockwell et al.,2012,Aves,Cyanocitta stelleri,63,1,0,0,0,0,0.39,16.1,0.00017,Locomotor activity,Neophilia-Neophobia,Neophobia,5876.5,Food,1,0,Repeatability,0,1,0,0,1,1,0,.,.
+163,84,Rockwell et al.,2012,Aves,Cyanocitta stelleri,57,1,0,0,0,0,0.41,16.1,0.00017,Locomotor activity,Neophilia-Neophobia,Neophobia,5876.5,Food,1,0,Correlation,0,0,0,0,1,1,0,.,.
+164,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.46,4.8,0.034246575,Latency to approach,Boldness-Shyness,Boldness,1752,Neutral,0,0,Repeatability,1,0,0,0,1,1,1,.,.
+165,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.553,5.8,0.028341993,Latency to approach,Boldness-Shyness,Boldness,2117,Neutral,0,0,Repeatability,1,0,0,0,1,1,1,.,.
+166,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.493,6.8,0.024174053,Latency to approach,Boldness-Shyness,Boldness,2482,Neutral,0,0,Repeatability,1,0,0,0,1,1,1,.,.
+167,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.747,7.8,0.021074816,Latency to approach,Boldness-Shyness,Boldness,2847,Neutral,0,0,Repeatability,1,0,0,0,1,1,1,.,.
+168,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.466,8.8,0.01867995,Latency to approach,Boldness-Shyness,Boldness,3212,Neutral,0,0,Repeatability,1,1,0,0,1,1,1,.,.
+169,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.639,9.8,0.016773833,Latency to approach,Boldness-Shyness,Boldness,3577,Neutral,0,0,Correlation,1,1,0,0,1,1,1,.,.
+170,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.677,9.8,0.016773833,Latency to move,Boldness-Shyness,Boldness,3577,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+171,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.616,9.8,0.016773833,Latency to move,Boldness-Shyness,Boldness,3577,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+172,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.157,9.8,0.016773833,Latency to move,Boldness-Shyness,Boldness,3577,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+173,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.522,9.8,0.016773833,Latency to move,Boldness-Shyness,Boldness,3577,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+174,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.588,9.8,0.016773833,Latency to move,Boldness-Shyness,Boldness,3577,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+175,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.604,9.8,0.016773833,Latency to move,Boldness-Shyness,Boldness,3577,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+176,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.465,9.8,0.016773833,Number of approaches,Other terms,Activity,3577,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+177,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.55,9.8,0.016773833,Number of approaches,Other terms,Activity,3577,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+178,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.313,9.8,0.016773833,Number of approaches,Other terms,Activity,3577,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+179,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.587,9.8,0.016773833,Number of approaches,Other terms,Activity,3577,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+180,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.624,9.8,0.016773833,Number of approaches,Other terms,Activity,3577,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+181,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.375,9.8,0.016773833,Number of approaches,Other terms,Activity,3577,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+182,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.47,9.8,0.016773833,Locomotor activity,Other terms,Activity,3577,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+183,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.473,9.8,0.016773833,Locomotor activity,Other terms,Activity,3577,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+184,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.621,9.8,0.016773833,Locomotor activity,Other terms,Activity,3577,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+185,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.762,9.8,0.016773833,Locomotor activity,Other terms,Activity,3577,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+186,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.76,9.8,0.016773833,Locomotor activity,Other terms,Activity,3577,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+187,85,Rohrer & Ferkin,2020,Mammalia,Microtus pennsylvanicus,42,60,0,0,0,1,0.608,9.8,0.016773833,Locomotor activity,Other terms,Activity,3577,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+188,86,Ruuskanen & Laaksonen,2010,Aves,Ficedula hypoleuca,57,119,0,0,1,0,0.43,15,0.02174,Latency to approach,Neophilia-Neophobia,Neophobia,5475,Neutral,0,0,Correlation,1,0,0,0,1,1,1,Terminology stats boldness to object = Neophobia,.
+189,87,Schielzeth et al.,2010,Aves,Taeniopygia guttata,530,2,1,0,1,0,0.43,12,0.00046,Behaviour scores,Neophilia-Neophobia,Neophilia,4380,Neutral,0,0,Correlation,0,0,0,1,0,0,1,.,.
+190,87,Schielzeth et al.,2010,Aves,Taeniopygia guttata,119,547,0,0,1,0,0.45,12,0.12489,Behaviour scores,Neophilia-Neophobia,Neophilia,4380,Neutral,0,0,Correlation,1,0,0,1,0,0,1,.,.
+191,88,Schuerch & Heg,2013,Actinopterygii,Neolamprologus pulcher,15,30,1,0,1,0,-0.09,7,0.011741683,Latency to approach,Boldness-Shyness,Boldness,2555,Neutral,0,0,Repeatability,0,0,0,0,1,1,1,.,.
+192,88,Schuerch & Heg,2013,Actinopterygii,Neolamprologus pulcher,21,30,1,0,1,0,0.45,7,0.011741683,Latency to approach,Boldness-Shyness,Boldness,2555,Neutral,0,0,Repeatability,0,0,0,0,1,1,1,.,.
+193,89,Siviter et al.,2017,Reptilia,Pogona vitticeps,13,4,1,0,1,0,0.491,12,0.00091,Latency to approach,General terms,Behavioural response,4380,Neutral,0,0,Correlation,0,0,0,0,1,1,1,.,.
+194,89,Siviter et al.,2017,Reptilia,Pogona vitticeps,13,4,1,0,1,0,0.028,12,0.00091,Latency to approach,General terms,Behavioural response,4380,Neutral,0,0,Correlation,0,0,0,0,1,1,1,.,.
+195,89,Siviter et al.,2017,Reptilia,Pogona vitticeps,13,150,1,0,1,0,0.026,12,0.03425,Latency to approach,General terms,Behavioural response,4380,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+196,90,Smith & Blumstein,2012,Actinopterygii,Poecilia reticulata,37,3,1,0,1,0,0.367,5,0.001643836,Number of approaches,Exploration,Exploration,1825,Neutral,0,0,Correlation,0,0,1,0,0,1,1,.,.
+197,91,Sol et al. ,2012,Aves,Acridotheres tristis,60,0.02,1,0,0,1,0.45,22.9,2.39E-06,Latency to feed,Neophilia-Neophobia,Neophobia,8358.5,Food,1,0,Correlation,0,0,0,1,0,1,1,.,.
+198,92,Soha et al.,2019,Aves,Melospiza melodia,18,395,0,0,0,1,0.472,11.3,0.095769184,Latency to feed,Neophilia-Neophobia,Neophobia,4124.5,Food,1,0,Repeatability,1,0,0,0,1,1,0,.,.
+199,92,Soha et al.,2019,Aves,Melospiza melodia,18,240,0,0,0,1,0.656,11.3,0.058188871,Latency to feed,Neophilia-Neophobia,Neophobia,4124.5,Food,1,0,Correlation,1,0,0,0,1,1,0,.,.
+200,93,Spake et al. ,2012,Mammalia,Sus domesticus,567,7,1,1,0,0,0.36,27,0.00071,Latency to contact,Exploration,Exploration,9855,Neutral,0,0,Repeatability,0,0,0,0,1,1,0,.,.
+201,94,Stoewe et al.A,2006,Aves,Corvus corax,6,1,1,0,1,0,0.79,69,0.00004,Behaviour scores,Exploration,Approach-Avoidance,25185,Neutral,0,0,Correlation,0,0,0,0,1,0,1,.,I think this is best labelled as exploration
+202,94,Stoewe et al.A,2006,Aves,Corvus corax,6,1,1,0,1,0,0.13,69,0.00004,Behaviour scores,Exploration,Approach-Avoidance,25185,Neutral,0,0,Correlation,0,0,0,0,1,0,1,.,I think this is best labelled as exploration
+203,94,Stoewe et al.A,2006,Aves,Corvus corax,6,1,1,0,1,0,0.43,69,0.00004,Behaviour scores,Exploration,Approach-Avoidance,25185,Neutral,0,0,Correlation,0,0,0,0,1,0,1,.,I think this is best labelled as exploration
+204,94,Stoewe et al.A,2006,Aves,Corvus corax,11,1,1,0,1,0,0.54,69,0.00004,Behaviour scores,Exploration,Approach-Avoidance,25185,Neutral,0,0,Correlation,0,0,0,0,1,0,1,.,I think this is best labelled as exploration
+205,94,Stoewe et al.A,2006,Aves,Corvus corax,10,1,1,0,1,0,-0.57,69,0.00004,Behaviour scores,Exploration,Approach-Avoidance,25185,Neutral,0,0,Correlation,0,0,0,0,1,0,1,.,I think this is best labelled as exploration
+206,94,Stoewe et al.A,2006,Aves,Corvus corax,10,1,1,0,1,0,-0.62,69,0.00004,Behaviour scores,Exploration,Approach-Avoidance,25185,Neutral,0,0,Correlation,0,0,0,0,1,0,1,.,I think this is best labelled as exploration
+207,94,Stoewe et al.A,2006,Aves,Corvus corax,6,1,1,0,1,0,0.52,69,0.00004,Number of approaches,Exploration,Approach-Avoidance,25185,Neutral,0,0,Correlation,0,0,0,0,1,0,1,.,I think this is best labelled as exploration
+208,94,Stoewe et al.A,2006,Aves,Corvus corax,6,1,1,0,1,0,0.82,69,0.00004,Number of approaches,Exploration,Approach-Avoidance,25185,Neutral,0,0,Correlation,0,0,0,0,1,0,1,.,I think this is best labelled as exploration
+209,94,Stoewe et al.A,2006,Aves,Corvus corax,6,1,1,0,1,0,0.87,69,0.00004,Number of approaches,Exploration,Approach-Avoidance,25185,Neutral,0,0,Correlation,0,0,0,0,1,0,1,.,I think this is best labelled as exploration
+210,94,Stoewe et al.A,2006,Aves,Corvus corax,11,1,1,0,1,0,-0.1,69,0.00004,Number of approaches,Exploration,Approach-Avoidance,25185,Neutral,0,0,Correlation,0,0,0,0,1,0,1,.,I think this is best labelled as exploration
+211,94,Stoewe et al.A,2006,Aves,Corvus corax,10,1,1,0,1,0,-0.3,69,0.00004,Number of approaches,Exploration,Approach-Avoidance,25185,Neutral,0,0,Correlation,0,0,0,0,1,0,1,.,I think this is best labelled as exploration
+212,94,Stoewe et al.A,2006,Aves,Corvus corax,10,1,1,0,1,0,0.2,69,0.00004,Number of approaches,Exploration,Approach-Avoidance,25185,Neutral,0,0,Correlation,0,0,0,0,1,0,1,.,I think this is best labelled as exploration
+213,94,Stoewe et al.A,2006,Aves,Corvus corax,6,1,1,0,1,0,0.79,69,0.00004,Latency to approach,Exploration,Approach-Avoidance,25185,Neutral,0,0,Correlation,0,0,0,0,1,0,1,.,I think this is best labelled as exploration
+214,94,Stoewe et al.A,2006,Aves,Corvus corax,6,1,1,0,1,0,-0.81,69,0.00004,Latency to approach,Exploration,Approach-Avoidance,25185,Neutral,0,0,Correlation,0,0,0,0,1,0,1,.,I think this is best labelled as exploration
+215,94,Stoewe et al.A,2006,Aves,Corvus corax,6,1,1,0,1,0,-0.65,69,0.00004,Latency to approach,Exploration,Approach-Avoidance,25185,Neutral,0,0,Correlation,0,0,0,0,1,0,1,.,I think this is best labelled as exploration
+216,94,Stoewe et al.A,2006,Aves,Corvus corax,11,1,1,0,1,0,0.57,69,0.00004,Latency to approach,Exploration,Approach-Avoidance,25185,Neutral,0,0,Correlation,0,0,0,0,1,0,1,.,I think this is best labelled as exploration
+217,94,Stoewe et al.A,2006,Aves,Corvus corax,10,1,1,0,1,0,0.48,69,0.00004,Latency to approach,Exploration,Approach-Avoidance,25185,Neutral,0,0,Correlation,0,0,0,0,1,0,1,.,I think this is best labelled as exploration
+218,94,Stoewe et al.A,2006,Aves,Corvus corax,10,1,1,0,1,0,0.37,69,0.00004,Latency to approach,Exploration,Approach-Avoidance,25185,Neutral,0,0,Correlation,0,0,0,0,1,0,1,.,I think this is best labelled as exploration
+219,95,Stoewe et al.B,2006,Aves,Corvus corax,12,75,1,0,1,0,0.65,69,0.00298,Behaviour scores,Neophilia-Neophobia,Neophobia,25185,Neutral,0,0,Correlation,1,0,0,0,1,0,1,.,"I think this is neophobia, not exploration (see e.g. abstract)"
+220,95,Stoewe et al.B,2006,Aves,Corvus corax,11,75,1,0,1,0,0.63,69,0.00298,Behaviour scores,Neophilia-Neophobia,Neophobia,25185,Neutral,0,0,Correlation,1,0,0,0,1,0,1,.,"I think this is neophobia, not exploration (see e.g. abstract)"
+221,96,Stuber et al.,2013,Aves,Parus major,61,60,0,0,0,0,0.08,15.4,0.01067,Behaviour scores,Exploration,Exploration,5621,Nest,0,1,Repeatability,1,0,0,1,0,1,0,.,.
+222,96,Stuber et al.,2013,Aves,Parus major,49,90,0,0,0,0,0.37,15.4,0.01601,Behaviour scores,Exploration,Exploration,5621,Nest,0,1,Repeatability,1,0,0,1,0,1,0,.,.
+223,97,Tan & Tan,2018,Insecta,Phaneroptera brevis,48,1,0,0,0,1,0.38,2,0.001369863,Latency to approach,Boldness & Exploration,Boldness & Exploration,730,Neutral,0,0,Repeatability,0,0,0,0,1,0,0,.,.
+224,98,Tobler & Sandell,2007,Aves,Taeniopygia guttata,44,3,1,0,1,0,0.17,12,0.00068,Latency to approach,Neophilia-Neophobia,Neophobia,4380,Neutral,0,0,Correlation,0,0,0,0,1,0,1,.,.
+225,99,Tremmel & Mueller,2013,Insecta,Phaedon cochleariae,48,7,0,0,0,1,0.377,1,0.019178082,Locomotor activity,Boldness-Shyness,Boldness,365,Neutral,0,0,Correlation,0,0,0,1,0,0,0,.,.
+226,100,Tremmel & Mueller,2014,Insecta,Galeruca tanaceti,51,14,0,0,1,0,0.55,1,0.038356164,Locomotor activity,Boldness-Shyness,Boldness,365,Neutral,0,0,Repeatability,0,0,0,0,1,0,0,.,.
+227,101,Trompf & Brown,2014,Actinopterygii,Poecilia reticulata,79,56,1,0,0,1,0.287,5,0.030684932,Latency to approach,Boldness-Shyness,Boldness,1825,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+228,102,Valros et al.,2017,Mammalia,Sus scrofa,10,22,1,1,0,0,0.75,27,0.002232369,Latency to contact,Neophilia-Neophobia,Neophilia,9855,Neutral,0,0,Correlation,0,0,1,0,0,0,1,.,"I think this is call neophilia, not exploration"
+229,103,Verbeek et al.,1994,Aves,Parus major,46,1,1,0,0,1,0.55,15.4,0.0002,Latency to contact,Exploration,Exploration,5621,Neutral,0,0,Correlation,0,0,0,0,1,1,1,.,.
+230,103,Verbeek et al.,1994,Aves,Parus major,17,63,0,0,0,1,0.81,15.4,0.0112,Latency to contact,Exploration,Exploration,5621,Neutral,0,0,Correlation,1,0,0,0,1,1,1,.,.
+231,104,Vernouillet & Kelly,2020,Aves,Gymnorhinus cyanocephalus,11,1,1,0,0,1,0,14.6,0.000187652,Latency to approach,Exploration,Exploration,5329,Neutral,0,0,Correlation,0,0,0,0,1,1,1,.,.
+232,104,Vernouillet & Kelly,2020,Aves,Nucifraga columbiana,12,1,1,0,0,1,0.47,17.4,0.000157456,Latency to approach,Exploration,Exploration,6351,Neutral,0,0,Correlation,0,0,0,0,1,1,1,.,.
+233,104,Vernouillet & Kelly,2020,Aves,Gymnorhinus cyanocephalus,11,1,1,0,0,1,0,17.4,0.000157456,Latency to approach,Exploration,Exploration,6351,Neutral,0,0,Correlation,0,0,0,0,1,1,1,.,.
+234,104,Vernouillet & Kelly,2020,Aves,Nucifraga columbiana,12,1,1,0,0,1,0,17.4,0.000157456,Latency to approach,Exploration,Exploration,6351,Neutral,0,0,Correlation,0,0,0,0,1,1,1,.,.
+235,104,Vernouillet & Kelly,2020,Aves,Gymnorhinus cyanocephalus,11,1,1,0,0,1,0.21,17.4,0.000157456,Latency to move,Exploration,Exploration,6351,Neutral,0,0,Correlation,0,0,0,0,1,1,1,.,.
+236,104,Vernouillet & Kelly,2020,Aves,Nucifraga columbiana,12,1,1,0,0,1,0.54,17.4,0.000157456,Latency to move,Exploration,Exploration,6351,Neutral,0,0,Correlation,0,0,0,0,1,1,1,.,.
+237,105,Vetter et al. ,2016,Mammalia,Sus scrofa,57,1,1,0,1,0,0.17,27,0.0001,Latency to contact,Exploration,Exploration,9855,Neutral,0,0,Repeatability,0,0,0,0,1,1,1,.,.
+238,105,Vetter et al. ,2016,Mammalia,Sus scrofa,57,1,1,0,1,0,0.17,27,0.0001,Latency to contact,Exploration,Exploration,9855,Neutral,0,0,Repeatability,0,0,0,0,1,1,1,.,.
+239,106,Vrublevska et al.,2015,Aves,Parus major,21,2,1,0,0,0,0.94,15.4,0.00036,Latency to feed,Neophilia-Neophobia,Neophobia,5621,Nest,0,1,Correlation,0,0,0,0,1,1,0,.,.
+240,107,Williams et al.,2012,Aves,Erythrura gouldiae,18,60,1,1,0,0,0.843,6,0.0274,Latency to approach,Neophilia-Neophobia,Neophilia,2190,Neutral,0,0,Repeatability,1,0,0,1,0,1,1,.,.
+241,107,Williams et al.,2012,Aves,Erythrura gouldiae,18,60,1,1,0,0,0.321,6,0.0274,Latency to feed,Neophilia-Neophobia,Neophobia,2190,Food,1,0,Correlation,1,0,0,1,0,1,1,.,.
+242,108,Wilson & Stevens,2005,Actinopterygii,Oncorhynchus mykiss,5,1,1,0,1,0,0.752,11,0.000249066,Latency to feed,Boldness-Shyness,Boldness,4015,Food,1,0,Repeatability,0,0,0,0,1,1,0,.,.
+243,109,Winter et al. ,2016,Actinopterygii,Gasterosteus aculeatus,58,3,0,0,1,0,0.58,8,0.001027397,Locomotor activity,Exploration,Exploration,2920,Neutral,0,0,Correlation,0,0,0,0,1,1,0,.,.
+244,110,Yuen et al. ,2015,Mammalia,Rhabdomys pumilio,37,150,0,0,0,0,0.007,4.5,0.09132,Latency to contact object,Exploration,Exploration,1642.5,Neutral,0,0,Repeatability,1,0,0,0,1,1,0,.,.
+245,111,Yuen et al. ,2016,Mammalia,Rhabdomys pumilio,18,7,0,0,0,1,0.55,4.5,0.00426,Behaviour scores,Exploration,Exploration,1642.5,Neutral,0,0,Repeatability,0,0,0,0,1,1,0,.,"This was just ""behavioural response"", but it should be like EffectSizeID=244"
+246,111,Yuen et al. ,2016,Mammalia,Rhabdomys pumilio,18,0.5,0,0,0,0,0.76,4.5,0.0003,Behaviour scores,Exploration,Exploration,1642.5,Neutral,0,0,Repeatability,0,0,0,0,1,1,0,.,"This was just ""behavioural response"", but it should be like EffectSizeID=244"
+247,112,Zidar et al.,2017,Aves,Gallus gallus,100,14,1,1,0,0,0.27,30,0.001278539,Vigilance,Neophilia-Neophobia,Neophilia,10950,Neutral,0,0,Repeatability,0,0,1,0,0,1,1,.,.
+248,112,Zidar et al.,2017,Aves,Gallus gallus,87,90,1,1,0,0,0.12,30,0.008219178,Vigilance,Neophilia-Neophobia,Neophilia,10950,Neutral,0,0,Repeatability,1,0,1,0,0,1,1,.,.
+249,113,Zidar et al.,2018,Aves,Gallus gallus,87,14,1,1,0,0,0.39,30,0.001278539,Vigilance,Neophilia-Neophobia,Neophilia,10950,Neutral,0,0,Repeatability,0,0,0,0,1,1,1,.,.
+250,113,Zidar et al.,2018,Aves,Gallus gallus,87,110,1,1,0,0,0.25,30,0.010045662,Vigilance,Neophilia-Neophobia,Neophilia,10950,Neutral,0,0,Repeatability,1,0,0,0,1,1,1,.,.
+251,113,Zidar et al.,2018,Aves,Gallus gallus,87,110,1,1,0,0,0.21,30,0.010045662,Vigilance,Neophilia-Neophobia,Neophilia,10950,Neutral,0,0,Repeatability,1,0,0,0,1,1,1,.,.
+252,113,Zidar et al.,2018,Aves,Gallus gallus,87,110,1,1,0,0,0.48,30,0.010045662,Escape,Boldness-Shyness,Boldness,10950,Neutral,0,0,Repeatability,1,0,0,0,1,1,1,.,.
+253,113,Zidar et al.,2018,Aves,Gallus gallus,87,110,1,1,0,0,0.02,30,0.010045662,Escape,Boldness-Shyness,Boldness,10950,Neutral,0,0,Repeatability,1,0,0,0,1,1,1,.,.
+254,113,Zidar et al.,2018,Aves,Gallus gallus,87,110,1,1,0,0,0.29,30,0.010045662,Escape,Boldness-Shyness,Boldness,10950,Neutral,0,0,Repeatability,1,0,0,0,1,1,1,.,.
+255,114,Christensen et al.,2020,Mammalia,Equus caballus,25,210,1,1,0,0,0.54,57,0.010093727,Vigilance,Alertness,Alertness,20805,Neutral,0,0,Correlation,1,0,0,0,1,0,1,,
+256,114,Christensen et al.,2020,Mammalia,Equus caballus,25,210,0,1,0,0,0.45,57,0.010093727,Vigilance,Alertness,Alertness,20805,Neutral,0,0,Correlation,1,0,0,0,1,0,1,,
+257,114,Christensen et al.,2020,Mammalia,Equus caballus,25,1095,1,1,0,0,0.19,57,0.052631579,Vigilance,Alertness,Alertness,20805,Neutral,0,0,Correlation,1,0,0,0,1,0,1,,
+258,114,Christensen et al.,2020,Mammalia,Equus caballus,25,1095,0,1,0,0,0.44,57,0.052631579,Vigilance,Alertness,Alertness,20805,Neutral,0,0,Correlation,1,0,0,0,1,0,1,,
+259,114,Christensen et al.,2020,Mammalia,Equus caballus,25,0.1,1,1,0,0,0.66,57,4.81E-06,Vigilance,Alertness,Alertness,20805,Neutral,0,0,Correlation,0,0,0,0,1,0,1,,
+260,114,Christensen et al.,2020,Mammalia,Equus caballus,25,365,1,1,0,0,0.63,57,0.01754386,Vigilance,Alertness,Alertness,20805,Neutral,0,0,Correlation,1,0,0,0,1,0,1,,
+261,114,Christensen et al.,2020,Mammalia,Equus caballus,25,365,1,1,0,0,0.56,57,0.01754386,Vigilance,Alertness,Alertness,20805,Neutral,0,0,Correlation,1,0,0,0,1,0,1,,
+262,114,Christensen et al.,2020,Mammalia,Equus caballus,25,730,1,1,0,0,0.64,57,0.035087719,Vigilance,Alertness,Alertness,20805,Neutral,0,0,Correlation,1,0,0,0,1,0,1,,
+263,114,Christensen et al.,2020,Mammalia,Equus caballus,25,730,0,1,0,0,0.51,57,0.035087719,Vigilance,Alertness,Alertness,20805,Neutral,0,0,Correlation,1,0,0,0,1,0,1,,
+264,114,Christensen et al.,2020,Mammalia,Equus caballus,25,0.1,1,1,0,0,0.68,57,4.81E-06,Vigilance,Alertness,Alertness,20805,Neutral,0,0,Correlation,0,0,0,0,1,0,1,,
+265,115,Thodberg et al.,1999,Mammalia,Sus domesticus,26,0.1,1,1,0,0,0.39,27,1.01E-05,Latency to contact,Object exploration,Object exploration,9855,Neutral,0,0,Correlation,0,0,0,0,1,1,1,,
