@@ -1,0 +1,1384 @@
+####################################################################################################################################
+# Script for the publication: 
+# Takola, E., Krause, E. T., Müller, C., & Schielzeth, H. (2021). Novelty at 
+# second glance: a critical appraisal of the novel object paradigm based on 
+# meta-analysis. Animal Behaviour, 180, 123-142. doi: 10.1016/j.anbehav.2021.07.018
+#
+# Author: Elina Takola
+# Date: 12 April 2021
+#
+# 
+####################################################################################################################################
+# R version details:
+# platform       x86_64-w64-mingw32          
+# arch           x86_64                      
+# os             mingw32                     
+# system         x86_64, mingw32             
+# status                                     
+# major          4                           
+# minor          1.0                         
+# year           2021                        
+# month          05                          
+# day            18                          
+# svn rev        80317                       
+# language       R                           
+# version.string R version 4.1.0 (2021-05-18)
+####################################################################################################################################
+
+
+
+############################################
+# Get ready !  
+############################################
+# Load necessary packages
+library(metafor)
+library(MCMCglmm)
+library(robumeta)
+library(ape)
+library(rotl)
+library(treebase)
+library(diagram)
+library(stringr)
+library(ggplot2)
+library(DescTools)
+library(ggthemes)
+library(plyr)
+library(dplyr)
+
+
+# Load data
+setwd("~/Desktop") # Set the path to your working directory
+dat <- read.table(choose.files(), sep=",", header=TRUE) # Choose the data file: "Novelty_at_second_glance_Takolaetal2021_Data.csv"
+str(dat)
+
+
+###############################################
+# Explanation of variable codes in dataset
+#
+# Time: time gap between trials measured in days
+# Novelty: whether the same or different objects were used in consecutive trials
+# DomLabYN: domestic animal (yes or no)
+# LabLabYN: lab-reared animal (yes or no)
+# WildLabYN: wild-caught animal (yes or no)
+# Max_lifespan: maximum lifespan extracted from AnAge database
+# Time_scaled: time gap as a proportion of lifespan
+# Measured_attributes: behavioural variable quantified
+# Terminology: term used to describe the behavioural phenotype
+# Terminology2: term used to describe the behavioural phenotype ()
+# Species_maxlifespan_days: maximum lifespan extracted from AnAge database measured in days
+# Context: whether object was placed in a neutral place, close to food or close to nest (categorical variable)
+# FoodYN: whether object was placed next to food (yes or no)
+# NestYN: whether object was placed next to nest(yes or no)	
+# R_type: whether repeatability or correlation was used 
+# LongTermYN: long or short term between trials
+# NoGaussianYN: whether gaussian or non-gaussian models were used
+# PCAYN: whether consistency was calculated as a composite measure
+# AverageYN: whether consistency was calculated as an average measure
+# SingBehCorYN: whether consistency was calculated for one variable
+# MultipleAssaysYN: whether novel object was the only test in the paper
+# MultiTraitsYN: whether multiple variables were measured during novel object trials
+#
+###############################################
+
+
+# Calculate effect sizes using package metafor
+dat <- escalc(measure="ZCOR", ri=Effect_Size, ni=Sample, data=dat)
+
+
+####################################################################################################################################
+
+############################################
+# Descriptive measures of dataset  
+############################################
+
+# Number of studies and effect sizes
+nrow(dat)
+length(table(dat$StudyID))
+
+
+# Number of species per taxon in the dataset
+specOverview = data.frame(table(list(dat$Class, dat$Species)))
+specOverview$Freq[specOverview$Freq > 0] = 1
+colnames(specOverview) = c("Class", "Species", "PresentYN") # Create third (numberic) column for species "presence"
+tapply(specOverview$PresentYN, specOverview$Class, sum) # Number of species per taxon
+sum(tapply(specOverview$PresentYN, specOverview$Class, sum)) # Total number of species
+
+# Sample size descriptives (mean, median, standard deviation etc)
+summary(dat$Sample)
+sd(dat$Sample)
+
+# Range time gap
+range(dat$Time_scaled)
+# Frequency table for time gap values
+table(dat$Time)
+# Descriptives of time gap 
+summary(dat$Time)
+sd(dat$Time)
+range(dat$Time)
+cumsum(table(dat$Time))/sum(table(dat$Time))
+1-cumsum(table(dat$Time))/sum(table(dat$Time))
+
+# Descriptives for Novelty (0 = Same object, 1 = Different object)
+agg = aggregate(EffectSizeID ~ StudyID + Novelty, data=dat, FUN=length)
+noveltyOverview = table(list(agg$StudyID, agg$Novelty)) # Isolate StudyID and Novelty 
+# Break the variable into three columns: Same, Different, Both
+noveltyOverview = data.frame(Same = noveltyOverview[,1], Different = noveltyOverview[,2]) 
+noveltyOverview$Both = rowSums(noveltyOverview)
+noveltyOverview$Same[noveltyOverview$Both==2] = 0
+noveltyOverview$Different[noveltyOverview$Both==2] = 0
+noveltyOverview$Both = ifelse(noveltyOverview$Both==2,1,0)
+# Descriptives for each level of Novelty
+colSums(noveltyOverview) 
+# Time gap class vs Novelty (number of studies)
+table(list(dat$LongTermYN, dat$Novelty))
+# Time gap class vs Novelty (relative frequencies)
+table(list(dat$LongTermYN, dat$Novelty))/rowSums(table(list(dat$LongTermYN, dat$Novelty)))
+
+# Correlation vs. repeatabily (same way as with Novelty above)
+agg = aggregate(EffectSizeID ~ StudyID + R_type, data=dat, FUN=length)
+RtypeOverview = table(list(agg$StudyID, agg$R_type))
+RtypeOverview = data.frame(Correlation = RtypeOverview[,1], Repeatability = RtypeOverview[,2])
+RtypeOverview$Both = rowSums(RtypeOverview)
+RtypeOverview$Correlation[RtypeOverview$Both==2] = 0
+RtypeOverview$Repeatability[RtypeOverview$Both==2] = 0
+RtypeOverview$Both = ifelse(RtypeOverview$Both==2,1,0)
+colSums(RtypeOverview)
+table(dat$R_type)
+table(dat$R_type)/sum(table(dat$R_type))
+length(unique(dat$StudyID[dat$NoGaussianYN==1]))
+
+# Testing Context (Neutral vs Food vs Nest)
+agg = aggregate(EffectSizeID ~ StudyID + Context, data=dat, FUN=length)
+contextOverview = table(list(agg$StudyID, agg$Context))
+colSums(contextOverview)
+colSums(contextOverview)/length(unique(dat$StudyID))
+table(dat$Context)/sum(table(dat$Context))
+
+# Combinations with other personality measures 
+agg = aggregate(EffectSizeID ~ StudyID + MultipleAssaysYN, data=dat, FUN=length)
+multipleAssayOverview = table(list(agg$StudyID, agg$MultipleAssaysYN))
+colSums(multipleAssayOverview)
+colSums(multipleAssayOverview)/sum(colSums(multipleAssayOverview))
+
+# Species with multiple effect sizes (in other words: Which are the most studied species?)
+agg = aggregate(EffectSizeID ~ StudyID + Species, data=dat, FUN=length)
+colnames(agg)[colnames(agg)=="EffectSizeID"] = "nEffectSizes"
+sort(tapply(agg$nEffectSizes, agg$Species, length), dec=TRUE)
+
+
+####################################################################################################################################
+
+##########################################################
+# Sample Size and Time interval change over the years
+##########################################################
+
+# Sample size trend
+summary(lm(log(Sample) ~ Year, data=dat))
+
+# Time interval trend
+dat$TimeIntervalFullDays = floor(dat$Time)
+dat$TimeIntervalFullDays[dat$TimeIntervalFullDays==0] = 1
+summary(mod <- lm(log(Time) ~ Year, data=dat))
+
+###########################################################
+# Figure 2.Temporal trends of (a) sample size and (b) time interval between repeated trials. 
+
+# (a) Sample Size plot
+p1 <- ggplot(dat, aes(x=dat$Year, y=dat$Sample)) + 
+  labs(title = "Temporal trend of sample size", x = "Publication Year", y = "Sample Size") + 
+  scale_x_continuous(limits=c(1990, 2020)) +
+  scale_y_log10() +
+  geom_point() + 
+  geom_smooth(method=lm, se=FALSE) + 
+  theme_few() +
+  theme(axis.title.y = element_text(size = 16, margin = margin(t = 0, r = 20, b = 0, l = 0))) +
+  theme(axis.title.x = element_text(size = 16, margin = margin(t = 20, r = 0, b = 0, l = 0)))
+
+
+# (b) Time gap plot
+dat$TimeIntervalFullDays = floor(dat$Time)
+dat$TimeIntervalFullDays[dat$TimeIntervalFullDays==0] = 1
+p2 <- ggplot(dat, aes(x=dat$Year, y=dat$TimeIntervalFullDays)) + 
+  labs(title = "Temporal trend of time intervals between repeated trials", x = "Publication Year", y = "Time interval (days)") + 
+  scale_x_continuous(limits=c(1990, 2020)) +
+  scale_y_log10() +
+  geom_point() + 
+  geom_smooth(method=lm, se=FALSE) + 
+  theme_few() +
+  theme(axis.title.y = element_text(size = 16, margin = margin(t = 0, r = 10, b = 0, l = 0))) +
+  theme(axis.title.x = element_text(size = 16, margin = margin(t = 20, r = 0, b = 0, l = 0)))
+
+# Combine plots
+#install.packages("gridExtra")
+library(gridExtra)
+grid.arrange(p1, p2, ncol=2)
+
+
+
+####################################################################################################################################
+
+#########################################################
+# Prepare a species matrix for the phylogenetic control
+#########################################################
+
+# Match species list with OpenTreeofLife database
+taxa <- tnrs_match_names(names = as.character(sort(unique(dat$Species))))
+taxa # check if there are approximate_match==TRUE, synonyms==TRUE, etc, to see how the species data extraction went
+
+# Plot phylogenetic tree
+tree <- tol_induced_subtree(ott_ids = taxa[["ott_id"]], label_format = "name")
+
+#########################################################
+# Figure A1.Phylogenetic tree of species included in the meta-analysis
+plot(tree, cex=.8, label.offset =.1, no.margin = TRUE)
+
+
+# See whether our tree covers all the species we wanted to include, and should make sure that the species 
+# names in our database match those in the tree.
+
+library(stringr)
+dat$Species.formatted <- str_replace(dat$Species, " ", "_") # Replace gaps with underscores
+
+# setdiff() tells us if there are some names that are in one of the databases but not in the other
+
+# Which species exist in my dataset but not in the Tree of Life?
+setdiff(dat$Species.formatted, as.character(tree$tip.label))
+# Which species exist in the Tree of Life but cannot be correctly found in my dataset?
+setdiff(as.character(tree$tip.label),dat$Species.formatted)
+# So we need to take care of those mismatches in species names 
+
+# We will change some names from the tree, and some from our dataset
+# Change tree names
+tree$tip.label <- tree$tip.label %>% recode("Oncorhynchus_mykiss_(species_in_domain_Eukaryota)"="Oncorhynchus_mykiss",
+                                            "Pan"="Pan_troglodytes", "Sus_scrofa_domesticus"="Sus_scrofa", 
+                                            "Mus_domesticus" = "Mus_musculus_domesticus",
+                                            "Curruca_melanocephala" = "Curruca_melanocephala",
+                                            "Curruca_melanocephala" = "Sylvia_melanocephala")
+# Change my dataset's species names
+dat$Species.formatted <- dat$Species.formatted %>% recode("Coturnix_coturnix japonica"="Coturnix_japonica", 
+                                                          "Sus_scrofa domesticus"="Sus_scrofa", 
+                                                          "Sus_domesticus" = "Sus_scrofa", 
+                                                          "Sylvia_melanocephala" = "Curruca_melanocephala",
+                                                          "Curruca_melanocephala" = "Curruca_melanocephala", 
+                                                          "Pan"="Pan_troglodytes", 
+                                                          "Mus_domesticus" = "Mus_musculus_domesticus")
+# do they still differ? 
+setdiff(dat$Species.formatted, as.character(tree$tip.label))
+setdiff(as.character(tree$tip.label),dat$Species.formatted)
+# No, so we can proceed!
+
+
+# Compute branch lengths of tree
+phylo_branch <- compute.brlen(tree, method = "Grafen", power = 1)
+
+# check if tree is ultrametric (should be TRUE)
+is.ultrametric(phylo_branch)
+
+# Build phylogenetic matrix
+A <- vcv(phylo_branch, cor = T) 
+
+
+
+
+
+####################################################################################################################################
+
+#####################################
+# Now let's do the meta-analysis! 
+#####################################
+
+
+# Phylogenetic multilevel meta-analytic model (this is the main overall meta-analytic model)
+multilevel_phylo <- rma.mv(yi = yi, V = vi, random = 
+                             list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species), 
+                           method = "REML", R = list(Species.formatted = A), data = dat)
+summary(multilevel_phylo)
+
+
+# Heterogeneity (I^2) analysis for model with phylogeny - sensu Nakagawa & Santos (2012)
+within_study <- sum(1/multilevel_phylo$vi) * (multilevel_phylo$k-1) / (sum(1/multilevel_phylo$vi)^2 - sum((1/multilevel_phylo$vi)^2)) #s^2_m: variation within study = random error
+total_var <- sum(multilevel_phylo$sigma2) + within_study #s^2_t = total variance
+sum(multilevel_phylo$sigma2)/total_var # Total heterogeneity %
+multilevel_phylo$sigma2[1] / total_var # Study level (between-study) variance %
+multilevel_phylo$sigma2[2] / total_var # Effect size (within-study) variance %
+multilevel_phylo$sigma2[3] / total_var # Phylogeny (between species) variance %
+multilevel_phylo$sigma2[4] / total_var # Within species variance %
+
+# Transform back from Zr to correlation
+FisherZInv(multilevel_phylo$beta)
+
+# Calculate tau squared
+random <- rma(yi = yi, vi = vi, method = "REML", data = dat) # Default method is REML
+confint(random)
+
+
+####################################################################################################################################
+
+
+
+
+
+####################################################################################################################################
+
+################################
+# Subsets of testing context
+################################
+
+nest <- subset (dat, Context == "Nest")
+food <- subset (dat, Context == "Food")
+neutral <- subset (dat, Context == "Neutral")
+
+#############
+# Descriptives 
+#############
+
+# Number of studies
+length(unique(neutral$StudyID))
+length(unique(food$StudyID))
+length(unique(nest$StudyID))
+
+# Number of effect sizes
+length(unique(neutral$EffectSizeID))
+length(unique(food$EffectSizeID))
+length(unique(nest$EffectSizeID))
+
+# Number of species - Neutral context
+specOverview = data.frame(table(list(neutral$Class, neutral$Species)))
+specOverview$Freq[specOverview$Freq > 0] = 1
+colnames(specOverview) = c("Class", "Species", "PresentYN")
+tapply(specOverview$PresentYN, specOverview$Class, sum)
+sum(tapply(specOverview$PresentYN, specOverview$Class, sum))
+
+# Number of species - Close to nest
+specOverview = data.frame(table(list(nest$Class, nest$Species)))
+specOverview$Freq[specOverview$Freq > 0] = 1
+colnames(specOverview) = c("Class", "Species", "PresentYN")
+tapply(specOverview$PresentYN, specOverview$Class, sum)
+sum(tapply(specOverview$PresentYN, specOverview$Class, sum))
+
+# Number of species - Close to food
+specOverview = data.frame(table(list(food$Class, food$Species)))
+specOverview$Freq[specOverview$Freq > 0] = 1
+colnames(specOverview) = c("Class", "Species", "PresentYN")
+tapply(specOverview$PresentYN, specOverview$Class, sum)
+sum(tapply(specOverview$PresentYN, specOverview$Class, sum))
+
+####################################################################################################################################
+
+
+
+
+
+####################################################################################################################################
+
+############################################
+# Short- and Long-term repeatabilities
+###########################################
+
+# Short- and Long-term
+short <- subset(dat, Time <= 30)
+long <- subset(dat, Time > 30)
+
+# Short-term repeatability (<=30 days)
+multilevel_short <- rma.mv(yi = yi, V = vi, random =
+                             list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                           method = "REML", R = list(Species.formatted = A), data = short)
+summary(multilevel_short)
+FisherZInv(multilevel_short$beta)
+
+
+# Long-term repeatability (>30 days)
+multilevel_long <- rma.mv(yi = yi, V = vi, random =
+                            list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                          method = "REML", R = list(Species.formatted = A), data = long)
+summary(multilevel_long)
+FisherZInv(multilevel_long$beta)
+
+
+################################
+# More classes of time intervals
+################################
+
+# Create classes of time intervals
+dat$TimeGapClass = "Days"
+dat$TimeGapClass[dat$Time >= 7] = "Weeks"
+dat$TimeGapClass[dat$Time >= 31] = "Months"
+dat$TimeGapClass[dat$Time >= 365] = "Years"
+
+# Repeatability for time intervals <=7 days
+days <- FisherZInv(rma.mv(yi = yi, V = vi, random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species), 
+                          method = "REML", R = list(Species.formatted = A), data = subset(dat, TimeGapClass=="Days"))$beta)
+
+# Repeatability for time intervals >7 days and <30 days
+weeks <- FisherZInv(rma.mv(yi = yi, V = vi, random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species), 
+                           method = "REML", R = list(Species.formatted = A), data = subset(dat, TimeGapClass=="Weeks"))$beta)
+
+# Repeatability for time intervals >30 days and <365 days
+months <- FisherZInv(rma.mv(yi = yi, V = vi, random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species), 
+                            method = "REML", R = list(Species.formatted = A), data = subset(dat, TimeGapClass=="Months"))$beta)
+
+# Repeatability for time intervals >=365 days
+years <- FisherZInv(rma.mv(yi = yi, V = vi, random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species), 
+                           method = "REML", R = list(Species.formatted = A), data = subset(dat, TimeGapClass=="Years"))$beta)
+
+
+#################################
+# Figure 3.Correlation coefficients for four classes of time intervals between repeated trials. 
+
+dat$TimeGapClassNo[dat$TimeGapClass == "Days"] = 1
+dat$TimeGapClassNo[dat$TimeGapClass == "Weeks"] = 2
+dat$TimeGapClassNo[dat$TimeGapClass == "Months"] = 3
+dat$TimeGapClassNo[dat$TimeGapClass == "Years"] = 4
+
+
+par(mar=c(5,5,3,3), mfrow=c(1,1))
+plot(jitter(dat$TimeGapClassNo, 0.3), ifelse(FisherZInv(dat$yi)<0, 0, FisherZInv(dat$yi)), 
+     cex=dat$Sample/100, col = "skyblue", xlim=c(0.5, 4.5), ylim=c(0,1), las=1, ylab="Correlation coefficient", 
+     xlab="Time interval class", xaxt="n", lwd=1.5)
+axis(1, at=1:4,labels=c("Days", "Weeks", "Months", "Years"))
+ests = rep(NA, 4)
+se = rep(NA, 4)
+TimeGaps = c("Days", "Weeks", "Months", "Years")
+for(i in 1:4) {
+  mod = rma.mv(yi = yi, V = vi, random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species), 
+               method = "REML", data = subset(dat, TimeGapClass==TimeGaps[i]))
+  ests[i] = mod$beta
+  se[i] = mod$se
+}
+points(1:4, FisherZInv(ests), pch=19, cex=2)
+segments(x0=1:4, x1=1:4, y0=FisherZInv(ests-se), y1=FisherZInv(ests+se), pch=19, cex=2, lwd=3)
+
+####################################################################################################################################
+
+
+
+
+
+
+####################################################################################################################################
+
+###############################################
+# Meta-regressions of testing context subsets
+###############################################
+
+
+#######
+# Nest #
+#######
+
+# Object placed close/inside the nest
+nest_metareg <- rma.mv(yi = yi, V = vi, mods = ~ Novelty*log(Time) + DomLabYN + LabLabYN + WildLabYN +
+                         NoGaussianYN + PCAYN + AverageYN + 
+                         MultipleAssaysYN, 
+                       random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                       method = "REML", R = list(Species.formatted = A), data = nest)
+
+# How much variation is explained by the moderators above?
+fix<-var(as.numeric(as.vector(nest_metareg$b) %*% t(as.matrix(nest_metareg$X))))
+R2m<- fix /(fix+sum(nest_metareg$sigma2))
+100*R2m
+
+
+
+
+########
+# Food #
+########
+
+
+# Object placed close to food
+food_metareg <- rma.mv(yi = yi, V = vi, mods = ~ Novelty*log(Time) + DomLabYN + LabLabYN + WildLabYN +
+                         NoGaussianYN + PCAYN + AverageYN + 
+                         MultipleAssaysYN, 
+                       random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                       method = "REML", R = list(Species.formatted = A), data = food)
+
+# How much variation is explained by the moderators above?
+fix<-var(as.numeric(as.vector(food_metareg$b) %*% t(as.matrix(food_metareg$X))))
+R2m<- fix /(fix+sum(food_metareg$sigma2))
+100*R2m
+
+
+
+
+#########
+# Neutral #
+#########
+
+
+# Object placed at a neutral position
+neutral_metareg <- rma.mv(yi = yi, V = vi, mods = ~ Novelty*log(Time) + DomLabYN + LabLabYN + WildLabYN +
+                            NoGaussianYN + PCAYN + AverageYN + 
+                            MultipleAssaysYN, 
+                          random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                          method = "REML", R = list(Species.formatted = A), data = neutral)
+
+# How much variation is explained by the moderators above?
+fix<-var(as.numeric(as.vector(neutral_metareg$b) %*% t(as.matrix(neutral_metareg$X))))
+R2m<- fix /(fix+sum(neutral_metareg$sigma2))
+100*R2m
+
+
+####################################################################################################################################
+
+
+
+
+####################################################################################################################################
+
+########################################
+# Meta-analysis of species subsets
+#######################################
+
+# Create subsets for each species Class
+mammals <- subset (dat, Class == "Mammalia")
+birds <- subset (dat, Class == "Aves")
+fish <- subset (dat, Class == "Actinopterygii")
+reptiles <- subset (dat, Class == "Reptilia")
+insects <- subset (dat, Class == "Insecta")
+
+
+###########
+# Mammals #
+###########
+
+# Meta-analysis of mammal subset
+meta_mammals <- rma.mv(yi = yi, V = vi, random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, 
+                                                      ~1 | Species), method = "REML", data = mammals)
+summary(meta_mammals)
+
+# Heterogeneity (I^2) analysis for model with phylogeny - sensu Nakagawa & Santos (2012)
+within_study <- sum(1/meta_mammals$vi) * (meta_mammals$k-1) / (sum(1/meta_mammals$vi)^2 - sum((1/meta_mammals$vi)^2)) #s^2_m: variation within study = random error
+total_var <- sum(meta_mammals$sigma2) + within_study #s^2_t = total variance
+sum(meta_mammals$sigma2)/total_var # Total heterogeneity %
+meta_mammals$sigma2[1] / total_var # Study level (between-study) variance %
+meta_mammals$sigma2[2] / total_var # Effect size (within-study) variance %
+meta_mammals$sigma2[3] / total_var # Phylogeny (between species) variance %
+meta_mammals$sigma2[4] / total_var # Within species variance %
+
+# Transform back from Zr to correlation
+FisherZInv(meta_mammals$beta)
+
+
+
+
+#########
+# Birds #
+#########
+
+# Meta-analysis of bird subset
+
+meta_birds <- rma.mv(yi = yi, V = vi, random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, 
+                                                    ~1 | Species), method = "REML", data = birds)
+summary(meta_birds)
+
+# Heterogeneity (I^2) analysis for model with phylogeny - sensu Nakagawa & Santos (2012)
+within_study <- sum(1/meta_birds$vi) * (meta_birds$k-1) / (sum(1/meta_birds$vi)^2 - sum((1/meta_birds$vi)^2)) #s^2_m: variation within study = random error
+total_var <- sum(meta_birds$sigma2) + within_study #s^2_t = total variance
+sum(meta_birds$sigma2)/total_var # Total heterogeneity %
+meta_birds$sigma2[1] / total_var # Study level (between-study) variance %
+meta_birds$sigma2[2] / total_var # Effect size (within-study) variance %
+meta_birds$sigma2[3] / total_var # Phylogeny (between species) variance %
+meta_birds$sigma2[4] / total_var # Within species variance %
+
+# Transform back from Zr to correlation
+FisherZInv(meta_birds$beta)
+
+
+
+
+########
+# Fish #
+########
+
+# Meta-analysis of fish subset / control = optimizer means that we chose a different optimizer in order to avoid convergence.
+# By default, (control = nlminb) is used for the numerical optimization.
+
+meta_fish <- rma.mv(yi = yi, V = vi, random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, 
+                                                   ~1 | Species), method = "REML", data = fish, control=list(optimizer="optim"))
+summary(meta_fish)
+
+# Heterogeneity (I^2) analysis for model with phylogeny - sensu Nakagawa & Santos (2012)
+within_study <- sum(1/meta_fish$vi) * (meta_fish$k-1) / (sum(1/meta_fish$vi)^2 - sum((1/meta_fish$vi)^2)) #s^2_m: variation within study = random error
+total_var <- sum(meta_fish$sigma2) + within_study #s^2_t = total variance
+sum(meta_fish$sigma2)/total_var # Total heterogeneity %
+meta_fish$sigma2[1] / total_var # Study level (between-study) variance %
+meta_fish$sigma2[2] / total_var # Effect size (within-study) variance %
+meta_fish$sigma2[3] / total_var # Phylogeny (between species) variance %
+meta_fish$sigma2[4] / total_var # Within species variance %
+
+# Transform back from Zr to correlation
+FisherZInv(meta_fish$beta)
+
+
+
+
+############
+# Reptiles #
+############
+
+# Meta-analysis of reptile subset
+
+meta_reptiles <- rma.mv(yi = yi, V = vi, random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, 
+                                                       ~1 | Species), method = "REML", data = reptiles)
+summary(meta_reptiles)
+
+# Heterogeneity (I^2) analysis for model with phylogeny - sensu Nakagawa & Santos (2012)
+within_study <- sum(1/meta_reptiles$vi) * (meta_reptiles$k-1) / (sum(1/meta_reptiles$vi)^2 - sum((1/meta_reptiles$vi)^2)) #s^2_m: variation within study = random error
+total_var <- sum(meta_reptiles$sigma2) + within_study #s^2_t = total variance
+sum(meta_reptiles$sigma2)/total_var # Total heterogeneity %
+meta_reptiles$sigma2[1] / total_var # Study level (between-study) variance %
+meta_reptiles$sigma2[2] / total_var # Effect size (within-study) variance %
+meta_reptiles$sigma2[3] / total_var # Phylogeny (between species) variance %
+meta_reptiles$sigma2[4] / total_var # Within species variance %
+
+# Transform back from Zr to correlation
+FisherZInv(meta_reptiles$beta)
+
+
+
+
+###########
+# Insects #
+###########
+
+# Meta-analysis of insect subset
+
+meta_ins <- rma.mv(yi = yi, V = vi, random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, 
+                                                  ~1 | Species), method = "REML", data = insects)
+summary(meta_ins)
+
+# Heterogeneity (I^2) analysis for model with phylogeny - sensu Nakagawa & Santos (2012)
+within_study <- sum(1/meta_ins$vi) * (meta_ins$k-1) / (sum(1/meta_ins$vi)^2 - sum((1/meta_ins$vi)^2)) #s^2_m: variation within study = random error
+total_var <- sum(meta_ins$sigma2) + within_study #s^2_t = total variance
+sum(meta_ins$sigma2)/total_var # Total heterogeneity %
+meta_ins$sigma2[1] / total_var # Study level (between-study) variance %
+meta_ins$sigma2[2] / total_var # Effect size (within-study) variance %
+meta_ins$sigma2[3] / total_var # Phylogeny (between species) variance %
+meta_ins$sigma2[4] / total_var # Within species variance %
+
+# Transform back from Zr to correlation
+FisherZInv(meta_ins$beta)
+####################################################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+####################################################################################################################################
+# We observed significant heterogeneity in the meta-analytic model (p value of Q is <.0001, 
+# see again summary(multilevel_phylo) above).
+# Therefore we have to use moderators in order to account for this heterogeneity.
+# In the code below, we use different moderators to the overall dataset and the subsets 
+# of mammals and birds (please see paper for a more detailed explanation).
+####################################################################################################################################
+
+
+
+####################################################################################################################################
+# Meta-regressions
+####################################################################################################################################
+
+
+################################
+# The impact of novelty & time #
+################################
+
+
+###########
+# Overall #
+###########
+
+overall_novt <- rma.mv(yi = yi, V = vi, mods = ~ Novelty*log(Time), 
+                       random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                       method = "REML", R = list(Species.formatted = A), data = dat)
+summary(overall_novt)
+
+# How much variation is explained by the moderators above?
+fix<-var(as.numeric(as.vector(overall_novt$b) %*% t(as.matrix(overall_novt$X))))
+R2m<- fix /(fix+sum(overall_novt$sigma2))
+100*R2m
+
+# Transform back from Zr to correlation
+FisherZInv(overall_novt$beta)
+
+
+###########
+# Mammals #
+###########
+
+mammals_novt <- rma.mv(yi = yi, V = vi, mods = ~ Novelty*log(Time), 
+                       random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                       method = "REML", R = list(Species.formatted = A), data = mammals)
+summary(mammals_novt)
+
+# How much variation is explained by the moderators above?
+fix<-var(as.numeric(as.vector(mammals_novt$b) %*% t(as.matrix(mammals_novt$X))))
+R2m<- fix /(fix+sum(mammals_novt$sigma2))
+100*R2m
+
+# Transform back from Zr to correlation
+FisherZInv(mammals_novt$beta)
+
+
+
+
+
+
+#########
+# Birds #
+#########
+
+birds_novt <- rma.mv(yi = yi, V = vi, mods = ~ Novelty*log(Time), 
+                     random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                     method = "REML", R = list(Species.formatted = A), data = birds)
+summary(birds_novt)
+
+# How much variation is explained by the moderators above?
+fix<-var(as.numeric(as.vector(birds_novt$b) %*% t(as.matrix(birds_novt$X))))
+R2m<- fix /(fix+sum(birds_novt$sigma2))
+100*R2m
+
+# Transform back from Zr to correlation
+FisherZInv(birds_novt$beta)
+
+
+
+
+
+
+
+##################################
+# The impact of other moderators #
+##################################
+
+###########
+# Overall #
+###########
+
+############################################################
+# The impact of domestication status on the overall dataset
+
+overall_ds <- rma.mv(yi = yi, V = vi, mods = ~ DomLabYN + LabLabYN + WildLabYN, 
+                     random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                     method = "REML", R = list(Species.formatted = A), data = dat)
+summary(overall_ds)
+
+## How much variation is explained by the moderators above?
+fix<-var(as.numeric(as.vector(overall_ds$b) %*% t(as.matrix(overall_ds$X))))
+R2m<- fix /(fix+sum(overall_ds$sigma2))
+100*R2m
+
+## Transform back from Zr to correlation
+FisherZInv(overall_ds$beta)
+
+
+
+#######################################################
+# The impact of testing context on the overall dataset
+
+overall_tc <- rma.mv(yi = yi, V = vi, mods = ~ NestYN + FoodYN, 
+                     random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                     method = "REML", R = list(Species.formatted = A), data = dat)
+summary(overall_tc)
+
+## How much variation is explained by the moderators above?
+fix<-var(as.numeric(as.vector(overall_tc$b) %*% t(as.matrix(overall_tc$X))))
+R2m<- fix /(fix+sum(overall_tc$sigma2))
+100*R2m
+
+## Transform back from Zr to correlation
+FisherZInv(overall_tc$beta)
+
+
+
+######################################################
+# The impact of response types on the overall dataset
+
+overall_rt <- rma.mv(yi = yi, V = vi, mods = ~ PCAYN + AverageYN, 
+                     random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                     method = "REML", R = list(Species.formatted = A), data = dat)
+summary(overall_rt)
+
+## How much variation is explained by the moderators above?
+fix<-var(as.numeric(as.vector(overall_rt$b) %*% t(as.matrix(overall_rt$X))))
+R2m<- fix /(fix+sum(overall_rt$sigma2))
+100*R2m
+
+## Transform back from Zr to correlation
+FisherZInv(overall_rt$beta)
+
+
+
+###########################################################
+# The impact of non-Gaussian models on the overall dataset
+
+overall_gauss <- rma.mv(yi = yi, V = vi, mods = ~ NoGaussianYN, 
+                        random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                        method = "REML", R = list(Species.formatted = A), data = dat)
+summary(overall_gauss)
+
+
+## How much variation is explained by the moderators above?
+
+fix<-var(as.numeric(as.vector(overall_gauss$b) %*% t(as.matrix(overall_gauss$X))))
+R2m<- fix /(fix+sum(overall_gauss$sigma2))
+100*R2m
+
+
+## Transform back from Zr to correlation
+FisherZInv(overall_gauss$beta)
+
+
+
+#################################################################
+# The impact of Multiple Assays per study on the overall dataset
+
+overall_multa <- rma.mv(yi = yi, V = vi, mods = ~ MultipleAssaysYN, 
+                        random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                        method = "REML", R = list(Species.formatted = A), data = dat)
+summary(overall_multa)
+
+
+## How much variation is explained by the moderators above?
+
+fix<-var(as.numeric(as.vector(overall_multa$b) %*% t(as.matrix(overall_multa$X))))
+R2m<- fix /(fix+sum(overall_multa$sigma2))
+100*R2m
+
+
+## Transform back from Zr to correlation
+FisherZInv(overall_multa$beta)
+
+
+
+
+
+###########
+# Mammals #
+###########
+
+
+##############################################################
+# The impact of domestication status on the subset of mammals
+
+mammals_ds <- rma.mv(yi = yi, V = vi, mods = ~ DomLabYN + LabLabYN + WildLabYN, 
+                     random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                     method = "REML", R = list(Species.formatted = A), data = mammals)
+summary(mammals_ds)
+
+
+## How much variation is explained by the moderators above?
+
+fix<-var(as.numeric(as.vector(mammals_ds$b) %*% t(as.matrix(mammals_ds$X))))
+R2m<- fix /(fix+sum(mammals_ds$sigma2))
+100*R2m
+
+
+## Transform back from Zr to correlation
+FisherZInv(mammals_ds$beta)
+
+
+
+#########################################################
+# The impact of testing context on the subset of mammals
+
+mammals_tc <- rma.mv(yi = yi, V = vi, mods = ~ NestYN + FoodYN, 
+                     random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                     method = "REML", R = list(Species.formatted = A), data = mammals)
+summary(mammals_tc)
+
+
+## How much variation is explained by the moderators above?
+
+fix<-var(as.numeric(as.vector(mammals_tc$b) %*% t(as.matrix(mammals_tc$X))))
+R2m<- fix /(fix+sum(mammals_tc$sigma2))
+100*R2m
+
+
+## Transform back from Zr to correlation
+FisherZInv(mammals_tc$beta)
+
+
+
+
+
+########################################################
+# The impact of response types on the subset of mammals
+
+mammals_rt <- rma.mv(yi = yi, V = vi, mods = ~ PCAYN + AverageYN, 
+                     random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                     method = "REML", R = list(Species.formatted = A), data = mammals)
+summary(mammals_rt)
+
+
+## How much variation is explained by the moderators above?
+
+fix<-var(as.numeric(as.vector(mammals_rt$b) %*% t(as.matrix(mammals_rt$X))))
+R2m<- fix /(fix+sum(mammals_rt$sigma2))
+100*R2m
+
+
+## Transform back from Zr to correlation
+FisherZInv(mammals_rt$beta)
+
+
+
+#############################################################
+# The impact of non-Gaussian models on the subset of mammals
+
+mammals_gauss <- rma.mv(yi = yi, V = vi, mods = ~ NoGaussianYN, 
+                        random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                        method = "REML", R = list(Species.formatted = A), data = mammals)
+summary(mammals_gauss)
+
+
+## How much variation is explained by the moderators above?
+
+fix<-var(as.numeric(as.vector(mammals_gauss$b) %*% t(as.matrix(mammals_gauss$X))))
+R2m<- fix /(fix+sum(mammals_gauss$sigma2))
+100*R2m
+
+
+## Transform back from Zr to correlation
+FisherZInv(mammals_gauss$beta)
+
+
+
+
+####################################################################
+# The impact of Multiple Assays per study on the subset of mammals
+
+mammals_multa <- rma.mv(yi = yi, V = vi, mods = ~ MultipleAssaysYN, 
+                        random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                        method = "REML", R = list(Species.formatted = A), data = mammals)
+summary(mammals_multa)
+
+
+## How much variation is explained by the moderators above?
+
+fix<-var(as.numeric(as.vector(mammals_multa$b) %*% t(as.matrix(mammals_multa$X))))
+R2m<- fix /(fix+sum(mammals_multa$sigma2))
+100*R2m
+
+
+## Transform back from Zr to correlation
+FisherZInv(mammals_multa$beta)
+
+
+
+############################################################
+
+#########
+# Birds #
+#########
+
+# The impact of domestication status on the subset of birds
+
+birds_ds <- rma.mv(yi = yi, V = vi, mods = ~ DomLabYN + LabLabYN + WildLabYN, 
+                   random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                   method = "REML", R = list(Species.formatted = A), data = birds)
+summary(birds_ds)
+
+
+## How much variation is explained by the moderators above?
+
+fix<-var(as.numeric(as.vector(birds_ds$b) %*% t(as.matrix(birds_ds$X))))
+R2m<- fix /(fix+sum(birds_ds$sigma2))
+100*R2m
+
+
+## Transform back from Zr to correlation
+FisherZInv(birds_ds$beta)
+
+
+
+
+#######################################################
+# The impact of testing context on the subset of birds
+
+birds_tc <- rma.mv(yi = yi, V = vi, mods = ~ NestYN + FoodYN, 
+                   random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                   method = "REML", R = list(Species.formatted = A), data = birds)
+summary(birds_tc)
+
+
+## How much variation is explained by the moderators above?
+
+fix<-var(as.numeric(as.vector(birds_tc$b) %*% t(as.matrix(birds_tc$X))))
+R2m<- fix /(fix+sum(birds_tc$sigma2))
+100*R2m
+
+
+## Transform back from Zr to correlation
+FisherZInv(birds_tc$beta)
+
+
+
+######################################################
+# The impact of response types on the subset of birds
+
+birds_rt <- rma.mv(yi = yi, V = vi, mods = ~ PCAYN + AverageYN, 
+                   random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                   method = "REML", R = list(Species.formatted = A), data = birds)
+summary(birds_rt)
+
+
+## How much variation is explained by the moderators above?
+
+fix<-var(as.numeric(as.vector(birds_rt$b) %*% t(as.matrix(birds_rt$X))))
+R2m<- fix /(fix+sum(birds_rt$sigma2))
+100*R2m
+
+
+## Transform back from Zr to correlation
+FisherZInv(birds_rt$beta)
+
+
+
+##########################################################
+# The impact of non-Gaussian models n the subset of birds
+
+birds_gauss <- rma.mv(yi = yi, V = vi, mods = ~ NoGaussianYN, 
+                      random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                      method = "REML", R = list(Species.formatted = A), data = birds)
+summary(birds_gauss)
+
+
+## How much variation is explained by the moderators above?
+
+fix<-var(as.numeric(as.vector(birds_gauss$b) %*% t(as.matrix(birds_gauss$X))))
+R2m<- fix /(fix+sum(birds_gauss$sigma2))
+100*R2m
+
+
+## Transform back from Zr to correlation
+FisherZInv(birds_gauss$beta)
+
+
+
+
+###############################################################
+# The impact of Multiple Assays per study n the subset of birds
+
+birds_multa <- rma.mv(yi = yi, V = vi, mods = ~ MultipleAssaysYN, 
+                      random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                      method = "REML", R = list(Species.formatted = A), data = birds)
+summary(birds_multa)
+
+
+## How much variation is explained by the moderators above?
+
+fix<-var(as.numeric(as.vector(birds_multa$b) %*% t(as.matrix(birds_multa$X))))
+R2m<- fix /(fix+sum(birds_multa$sigma2))
+100*R2m
+
+
+## Transform back from Zr to correlation
+FisherZInv(birds_multa$beta)
+##################################################################################################################
+
+
+###############################################################################################################
+# Forest plot of moderator estimates for the overall dataset, mammals and birds subsets
+###############################################################################################################
+
+
+# First, fit meta-regressions with all moderators to see how much variation is explained by all the moderators in total
+
+# Overall model (meta-regression with complete dataset) with all moderators
+overall_metareg <- rma.mv(yi = yi, V = vi, mods = ~ Novelty*log(Time) + DomLabYN + LabLabYN + WildLabYN +
+                            NestYN + FoodYN + NoGaussianYN + PCAYN + AverageYN + 
+                            MultipleAssaysYN, 
+                          random = list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                          method = "REML", R = list(Species.formatted = A), data = dat)
+
+# How much variation is explained by the moderators above?
+fix<-var(as.numeric(as.vector(overall_metareg$b) %*% t(as.matrix(overall_metareg$X))))
+R2m<- fix /(fix+sum(overall_metareg$sigma2))
+100*R2m
+
+
+# Meta-regression for mammals subset with all moderators
+mammals_metareg <- rma.mv(yi = yi, V = vi, mods = ~ Novelty*log(Time) + DomLabYN + LabLabYN + WildLabYN +
+                            NestYN + FoodYN + NoGaussianYN + PCAYN + AverageYN + 
+                            MultipleAssaysYN, random =
+                            list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                          method = "REML", R = list(Species.formatted = A), data = mammals, control=list(optimizer="optim"))
+# How much variation is explained by the moderators above?
+fix<-var(as.numeric(as.vector(mammals_metareg$b) %*% t(as.matrix(mammals_metareg$X))))
+R2m<-fix/(fix+sum(mammals_metareg$sigma2))
+100*R2m
+
+
+
+# Meta-regression for birds subset with all moderators
+birds_metareg <- rma.mv(yi = yi, V = vi, mods = ~ Novelty*log(Time) + DomLabYN + LabLabYN + WildLabYN +
+                          NestYN + FoodYN + NoGaussianYN + PCAYN + AverageYN + 
+                          MultipleAssaysYN, random =
+                          list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                        method = "REML", R = list(Species.formatted = A), data = birds)
+# How much variation is explained by the moderators above?
+fix<-var(as.numeric(as.vector(birds_metareg$b) %*% t(as.matrix(birds_metareg$X))))
+R2m<-fix/(fix+sum(birds_metareg$sigma2))
+100*R2m
+######################################
+
+# A bit of data wrangling before we proceed to plotting
+
+# Create data frame with moderator estimates and confidence interval limits
+a <- data.frame(as.vector(overall_metareg$beta[,1]), overall_metareg$ci.lb, 
+                overall_metareg$ci.ub, rownames (overall_metareg$beta))
+b <- data.frame(as.vector(mammals_metareg$beta[,1]), mammals_metareg$ci.lb, 
+                mammals_metareg$ci.ub, rownames (mammals_metareg$beta))
+c <- data.frame(as.vector(birds_metareg$beta[,1]), birds_metareg$ci.lb, 
+                birds_metareg$ci.ub, rownames (birds_metareg$beta))
+colnames(a) <- c("Estimates", "CI_L", "CI_U", "Moderator")
+colnames(b) <- c("Estimates", "CI_L", "CI_U", "Moderator")
+colnames(c) <- c("Estimates", "CI_L", "CI_U", "Moderator")
+
+# Combine everything in one data frame
+mods_est <- rbind (a, b, c)
+
+# Remove intercepts
+mods_est <- mods_est[-c(1, 14, 26), ] 
+
+# Make groups
+Group <- c(rep("Overall", 12), rep("Mammals", 11), rep("Birds", 12)) # In mammals we don't have TestingContext = Nest, so there are estimates for 11 moderators
+mods_est <- cbind (mods_est, Group)
+
+
+# Modify levels of Moderators
+mods_est$Moderator = factor(mods_est$Moderator, 
+                            levels=c("log(Time)", "Novelty",
+                                     "DomLabYN", "LabLabYN", "WildLabYN", "NestYN", 
+                                     "FoodYN", "NoGaussianYN", "PCAYN", "AverageYN", 
+                                     "MultiTraitsYN", "Novelty:log(Time)", "MultipleAssaysYN")) 
+
+# Rename variable names so they make sense
+library(plyr)
+mods_est$Moderator <- revalue(mods_est$Moderator, 
+                              c("log(Time)" = "Time", "Novelty" = "Novelty",
+                                "DomLabYN" = "Domestic", "LabLabYN" = "Lab-reared", "WildLabYN" = "Wild-caught", 
+                                "NestYN" = "Next to nest", "FoodYN" = "Next to food", 
+                                "NoGaussianYN" = "Non-Gaussian", "PCAYN" = "PCA scores", "AverageYN" = "Composite est.", 
+                                "MultiTraitsYN" = "Multi traits", 
+                                "Novelty:log(Time)" = "Novelty*Time", "MultipleAssaysYN" = "Multiple Assays"))
+
+######################################
+# Figure 4.Forest plot showing the results of meta-regressions using the full data set and subsets of bird and mammal species. 
+
+# Make forest plot with moderator estimates of subsets
+g = ggplot(data=mods_est, aes(x=Group, y=Estimates, ymin=CI_L, ymax=CI_U, color=Moderator)) #Use Est-CI_L-CI_U, we will also use Moderators and Groups
+g = g + geom_pointrange(aes(col=Group), lwd=0.8)  #Specify points
+g = g + geom_hline(aes(fill=Group), yintercept =0, linetype=2) #Each Group has its own colour
+g = g + xlab("") + ylab("Moderator Estimates (95% Confidence Interval)") #Axis titles
+g = g + geom_errorbar(aes(ymin=CI_L, ymax=CI_U, col=Group), width=0.5, cex=1) #Specify error bar
+g = g + facet_wrap(~Moderator, strip.position="top", nrow=9, scales = "free_y") #Separate windows per moderator
+g + coord_flip() + theme_few() + theme(legend.position="none")
+
+
+####################################################################################################################################
+
+
+
+
+
+
+####################################################################################################################################
+
+######################
+# Publication bias
+######################
+
+# Fit intercept-only random-effects model
+random <- rma(yi = yi, vi = vi, method = "REML", data = dat) 
+
+# Publication bias plots
+funnel(random, main="Standard Error")
+funnel(random, yaxis="vi", main="Sampling Variance")
+funnel(random, yaxis="seinv", main="Inverse Standard Error", digits = 0, cex.studlab = 0.25)
+
+####################################################
+# Figure 5.Funnel plot of inverse sampling variation against effect sizes for an assess-ment of publication bias.
+
+funnel(random, yaxis="vinv", main="Inverse Sampling Variance", 
+       back = "white", shade = "lightgrey")
+
+
+# Egger's test for publication bias.
+# The null hypothesis of Egger’s regression is that the intercept of a linear regression
+# of normalized effect estimate against precision is equal to zero.
+# If p-value is <0.05, the funnel plot is not symmetric and thus there is publication bias.
+# If p-value is >0.05, the funnel plot is (nearly) symmetric and thus there is no publication bias.
+regtest(random, model="rma")
+regtest(random, model="lm")
+trimfill(random, estimator = "R0")  
+trimfill(random)  
+
+funnel(trimfill(random, yaxis="seinv", main="Inverse Standard Error", estimator = "R0"))
+
+
+
+##########################
+# Sensitivity analysis
+##########################
+
+# Calculate influence diagnostics - detect outliers
+options(max.print=1000000)
+inf <- influence(random)
+inf
+
+
+##############################################
+# Figure A2.Influence diagnostics of effect sizes.
+
+# Plot the influence diagnostics
+plot(inf, layout=c(4,2))
+
+
+# Exclude outliers (indicated with asterisks in the inf data frame)
+dat_sens <- dat[-c(51, 105, 127, 156, 239),]
+
+# Fit model without outliers
+random_sens <- rma.mv(yi = yi, V = vi, random =
+                        list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                      method = "REML", R = list(Species.formatted = A), data = dat_sens)
+summary(random_sens)
+### I2 analysis for model without outliers - sensu Nakagawa & Santos (2012)
+within_study <- sum(1/random_sens$vi) * (random_sens$k-1) / (sum(1/random_sens$vi)^2 - sum((1/random_sens$vi)^2)) 
+total_var <- sum(random_sens$sigma2) + within_study 
+sum(random_sens$sigma2)/total_var # Total heterogeneity %
+
+# Fit model with outliers
+random <- rma.mv(yi = yi, V = vi, random =
+                   list(~1 | StudyID, ~1 | EffectSizeID, ~1 | Species.formatted, ~1 | Species),
+                 method = "REML", R = list(Species.formatted = A), data = dat)
+summary(random)
+### I2 analysis for model with outliers - sensu Nakagawa & Santos (2012)
+within_study <- sum(1/random$vi) * (random$k-1) / (sum(1/random$vi)^2 - sum((1/random$vi)^2)) 
+total_var <- sum(random$sigma2) + within_study 
+sum(random$sigma2)/total_var # Total heterogeneity %
+
+# The two models above do not differ substantially so we can run the analyses using the complete dataset
+
+####################################################################################################################################
+
+
+
+
+####################################################################################################################################
+
+############################################
+# 3 most popular species in our dataset
+############################################
+
+
+############################################
+# Figure 6. Repeatability (estimates±SE) of behaviour in different testing contexts (position of novel object 
+# relative to food or the nest) for the most popular species in our data set
+
+# Species with multiple studies
+
+agg = aggregate(EffectSizeID ~ StudyID + Species, data=dat, FUN=length)
+colnames(agg)[colnames(agg)=="EffectSizeID"] = "nEffectSizes"
+sort(tapply(agg$nEffectSizes, agg$Species, length), dec=TRUE)
+
+agg = aggregate(EffectSizeID ~ Species, data=dat, FUN=length)
+colnames(agg)[colnames(agg)=="EffectSizeID"] = "nEffectSizes"
+agg = data.frame(agg)
+agg[sort(agg$nEffectSizes, dec=TRUE, index.return=TRUE)$ix,]
+
+
+dat$LongTermYN = as.numeric(dat$Time>30)
+dat$NoveltyYN = dat$Novelty
+
+# Open new plotting window
+windows(5, 10)
+par(mfrow=c(3,1), mar=c(5,5,3,1))
+cors= c(0.05,0.2,0.4,0.6, 0.8, 0.98)
+
+
+# Zebra finches
+SpeciesSelect = "Taeniopygia guttata"
+datsub = subset(dat, Species==SpeciesSelect) # Create subset with species
+datsub = datsub[order(datsub$NestYN, datsub$FoodYN, datsub$LongTermYN, datsub$Sample),] # Gather the other variables of interest
+datsub$Lab = LETTERS[c(1,2, 3, 3, 4, 5, 6, rep(7, 8))] # Assign a letter to each laboratory (based on affiliations)
+plot(FisherZInv(datsub$yi), pch=ifelse(datsub$LongTermYN==1,19,1), 
+     cex=datsub$Sample/100, las=1, ylab="Correlation coefficient", ylim=c(0,1), 
+     xaxt="n", main=SpeciesSelect, xlab="Laboratory label", cex.lab=1.3, font.main=4)
+axis(1, 1:length(datsub$Lab), datsub$Lab)
+segments(x0=1:nrow(datsub), x1=1:nrow(datsub), y0=FisherZInv(datsub$yi-summary(datsub)$sei), 
+         y1=FisherZInv(datsub$yi+summary(datsub)$sei)) # Create confidence intervals
+abline(h=0.5)
+abline(v=4.5)
+text(c(1,5),1,label=c("Neutral", "Food"), pos=4)
+
+
+# Great tits
+SpeciesSelect = "Parus major"
+datsub = subset(dat, Species==SpeciesSelect)
+datsub$Sample
+datsub = datsub[order(datsub$NestYN, datsub$FoodYN, datsub$LongTermYN, datsub$Sample),]
+datsub$Lab = LETTERS[c(1,1,2,3,4,4,5,6,6)]
+plot(FisherZInv(datsub$yi), pch=ifelse(datsub$LongTermYN==1,19,1), cex=datsub$Sample/25, 
+     las=1, ylab="Correlation coefficient", ylim=c(0,1), xaxt="n", main=SpeciesSelect, 
+     xlab="Laboratory label", cex.lab=1.3, font.main=4)
+axis(1, 1:length(datsub$Lab), datsub$Lab)
+segments(x0=1:nrow(datsub), x1=1:nrow(datsub), y0=FisherZInv(datsub$yi-summary(datsub)$sei), 
+         y1=FisherZInv(datsub$yi+summary(datsub)$sei))
+abline(h=0.5)
+abline(v=c(3.5, 6.5))
+text(c(1,4,7),1,label=c("Neutral", "Food", "Nest"), pos=4)
+
+
+# Cavies and guinea pigs
+SpeciesSelect = "Cavia aperea"
+datsub = subset(dat, Species==SpeciesSelect)
+datsub$Sample
+datsub = datsub[order(datsub$NestYN, datsub$FoodYN, datsub$LongTermYN, datsub$Sample),]
+datsub$Lab = LETTERS[c(1,2,2,1,1,1,1,1)]
+plot(FisherZInv(datsub$yi), pch=ifelse(datsub$LongTermYN==1,19,1), cex=datsub$Sample/25, las=1, ylab="Correlation coefficient", ylim=c(0,1), xaxt="n", main=SpeciesSelect, xlab="Laboratory label", cex.lab=1.3, font.main=4)
+axis(1, 1:length(datsub$Lab), datsub$Lab)
+segments(x0=1:nrow(datsub), x1=1:nrow(datsub), y0=FisherZInv(datsub$yi-summary(datsub)$sei), y1=FisherZInv(datsub$yi+summary(datsub)$sei))
+abline(h=0.5)
+text(1,1,label="Neutral", pos=4)
+
+
+####################################################################################################################################
+
+
+
+
+####################################################################################################################################
+
+############################################
+# Summarize terminology variation
+############################################
+
+# Terminology frequency
+terms <- dat[c("StudyID", "Terminology2")]
+a <- table(terms$Terminology2)
+
+# Frequency of measured attributes
+vars <- dat[c("StudyID", "Measured_attributes")]
+b <- table(vars$Measured_attributes)
+
+# Combine terminology and measured attributes in a table
+heat <- table(vars$Measured_attributes, terms$Terminology)
+
+
+# Figure A3. Heatmap showing the number of effect sizes by response behaviour and label for the behavioural phenotypes.
+library(pheatmap)
+pheatmap(heat, main = "Terminology frequency", cellwidth = 40, cellheight = 40, fontsize = 12, 
+         number_format = "%.0f", display_numbers = TRUE, cluster_cols = FALSE, cluster_rows = FALSE)
+
+####################################################################################################################################
+
