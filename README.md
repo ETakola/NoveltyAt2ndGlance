@@ -6,10 +6,10 @@ Data and code for publication: Takola, E., Krause, E. T., Müller, C., &amp; Sch
 ###############################################
 # Explanation of variable codes in dataset
 
- Time: time gap between trials measured in days
- Novelty: whether the same or different objects were used in consecutive trials
- DomLabYN: domestic animal (yes or no)
- LabLabYN: lab-reared animal (yes or no)
+Time: time gap between trials measured in days
+Novelty: whether the same or different objects were used in consecutive trials
+DomLabYN: domestic animal (yes or no)
+LabLabYN: lab-reared animal (yes or no)
  WildLabYN: wild-caught animal (yes or no)
  Max_lifespan: maximum lifespan extracted from AnAge database
  Time_scaled: time gap as a proportion of lifespan
